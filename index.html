@@ -2,318 +2,117 @@
 <html lang="ar" dir="rtl">
 <head>
    <meta name="google-site-verification" content="BXCAfItdE4OJJi7gMB9qiVyQGtq2M5OBj6uwpnZYS0E" />
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نادي الإتفاق الرباطي | Itifaqe de Rabat</title>
+    <!-- مكتبة الرسم البياني Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #0d130e;
-            color: #ffffff;
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0d130e; color: #ffffff; line-height: 1.6; }
 
-        /* Header & Navigation */
+        /* Header / Nav */
         header {
-            background-color: #141c16;
-            padding: 12px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #16a34a;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: #141c16; padding: 12px 5%; display: flex;
+            justify-content: space-between; align-items: center;
+            border-bottom: 3px solid #16a34a; position: sticky; top: 0; z-index: 1000;
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .logo-img {
-            height: 55px;
-            width: auto;
-            border-radius: 5px;
-        }
-        .logo-text {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-        .logo-text span {
-            color: #16a34a;
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        nav a:hover {
-            color: #16a34a;
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; width: auto; object-fit: contain; }
+        .logo-text { font-size: 18px; font-weight: bold; color: #ffffff; text-transform: uppercase; }
+        .logo-text span { color: #16a34a; }
+        nav { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        nav a { color: #d1d5db; text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #16a34a; }
+        
+        .coach-nav-btn {
+            background-color: #222d25; border: 1px solid #16a34a;
+            color: #16a34a !important; padding: 5px 12px; border-radius: 5px; font-weight: bold;
         }
         .btn-cta {
-            background-color: #16a34a;
-            color: white;
-            padding: 9px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
+            background-color: #16a34a; color: white; padding: 8px 16px;
+            border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; border: none; cursor: pointer;
         }
-        .btn-cta:hover {
-            background-color: #15803d;
-        }
+        .btn-cta:hover { background-color: #15803d; }
 
         /* Hero Banner */
         .hero {
-            text-align: center;
-            padding: 100px 20px;
+            text-align: center; padding: 70px 20px;
             background: linear-gradient(rgba(13, 19, 14, 0.88), rgba(13, 19, 14, 0.95)), 
                         url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1200') center/cover fixed;
         }
-        .hero-logo {
-            width: 110px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
-        .hero p {
-            font-size: 18px;
-            color: #9ca3af;
-            margin-bottom: 28px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid #16a34a;
-            color: #ffffff;
-            padding: 10px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            background-color: #16a34a;
-        }
+        .hero-logo { width: 100px; height: auto; margin-bottom: 12px; }
+        .hero h1 { font-size: 36px; margin-bottom: 10px; }
+        .hero p { font-size: 16px; color: #9ca3af; margin-bottom: 25px; max-width: 650px; margin-left: auto; margin-right: auto; }
 
-        /* Section Styling */
-        section {
-            padding: 50px 5%;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: #16a34a;
-        }
+        section { padding: 40px 5%; }
+        .section-title { text-align: center; font-size: 26px; margin-bottom: 25px; color: #16a34a; }
 
-        /* Toggle Content Boxes */
-        .toggle-box {
-            display: none;
-            background-color: #141c16;
-            border: 1px solid #2e3d34;
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 15px;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-        .toggle-box.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sponsors Section Style */
-        .sponsors-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-        .sponsor-card {
-            background-color: #141c16;
-            border: 1px solid #2e3d34;
-            border-radius: 12px;
-            padding: 20px 30px;
-            text-align: center;
-            min-width: 200px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .sponsor-card:hover {
-            transform: translateY(-5px);
-            border-color: #16a34a;
-        }
-        .sponsor-logo {
-            max-width: 120px;
-            height: 60px;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
-        .sponsor-card h4 {
-            color: #ffffff;
-            font-size: 16px;
-        }
-        .sponsor-card span {
-            color: #16a34a;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* Gallery Section */
+        /* معرض الصور (أكثر من 15 صورة) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 15px;
         }
         .gallery-item {
             position: relative;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid #2e3d34;
-            height: 200px;
+            height: 180px;
+            background-color: #141c16;
         }
         .gallery-item img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
+        .gallery-item:hover img { transform: scale(1.08); }
         .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.85));
-            padding: 10px;
-            text-align: center;
-            font-size: 14px;
-            color: #ffffff;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.88));
+            padding: 8px; text-align: center; font-size: 12px; color: #ffffff;
         }
 
-        /* Categories & Staff Grids */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+        /* قسم المستشهرين (صورتين) */
+        .sponsors-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .sponsor-card {
+            background-color: #141c16; border: 1px solid #2e3d34; border-radius: 10px;
+            padding: 20px 30px; text-align: center; text-decoration: none; transition: 0.3s;
+            min-width: 250px;
         }
-        .card {
-            background-color: #141c16;
-            border: 1px solid #2e3d34;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #16a34a;
-        }
-        .card h3, .card h4 {
-            color: #16a34a;
-            margin-bottom: 8px;
-        }
-        .card .role {
-            color: #9ca3af;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
+        .sponsor-card:hover { border-color: #16a34a; transform: translateY(-4px); }
+        .sponsor-logo { max-width: 140px; height: 65px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
+        .sponsor-card h4 { color: #ffffff; font-size: 15px; margin-bottom: 4px; }
+        .sponsor-card span { color: #16a34a; font-size: 12px; font-weight: bold; }
 
-        /* Professional Form Style */
-        .form-group {
-            margin-bottom: 16px;
-            text-align: right;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            color: #d1d5db;
-            font-size: 14px;
-            font-weight: 500;
-        }
+        /* Coach Portal & Tabs */
+        .coach-portal { background-color: #111813; border: 2px solid #16a34a; border-radius: 12px; padding: 25px; margin: 20px 0; display: none; }
+        .coach-portal.active { display: block; }
+        .login-box { max-width: 480px; margin: 0 auto; text-align: center; background-color: #141c16; padding: 30px; border-radius: 10px; border: 1px solid #2e3d34; }
+        
+        .portal-tabs { display: flex; gap: 10px; border-bottom: 1px solid #2e3d34; padding-bottom: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { background-color: #141c16; border: 1px solid #2e3d34; color: #9ca3af; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .tab-btn.active { background-color: #16a34a; color: white; border-color: #16a34a; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .badge-verified { background: linear-gradient(45deg, #16a34a, #22c55e); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-right: 5px; }
+        .radar-container { max-width: 350px; margin: 0 auto; }
+
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .card { background-color: #141c16; border: 1px solid #2e3d34; border-radius: 8px; padding: 18px; text-align: center; }
+        .card h4 { color: #16a34a; margin-bottom: 6px; }
+
+        .form-group { margin-bottom: 14px; text-align: right; }
+        .form-group label { display: block; margin-bottom: 5px; color: #d1d5db; font-size: 13px; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 11px;
-            border-radius: 6px;
-            border: 1px solid #2e3d34;
-            background-color: #0d130e;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: #16a34a;
+            width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2e3d34; background-color: #0d130e; color: #ffffff; font-size: 13px; outline: none;
         }
 
-        /* Footer */
-        footer {
-            background-color: #070a08;
-            border-top: 1px solid #1f2923;
-            padding: 40px 5% 20px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        .footer-col h4 {
-            color: #16a34a;
-            margin-bottom: 15px;
-        }
-        .footer-col p, .footer-col a {
-            color: #9ca3af;
-            font-size: 14px;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .copyright {
-            text-align: center;
-            color: #6b7280;
-            font-size: 13px;
-            border-top: 1px solid #141c16;
-            padding-top: 20px;
-        }
+        footer { background-color: #070a08; border-top: 1px solid #1f2923; padding: 30px 5% 15px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
     </style>
 </head>
 <body>
@@ -321,70 +120,172 @@
     <!-- Header / Navigation -->
     <header>
         <div class="logo-container">
-            <img src="logo.png" alt="شعار نادي الإتفاق الرباطي" class="logo-img">
+            <img src="logo.png" alt="لوغو نادي الإتفاق الرباطي" class="logo-img" onerror="this.style.display='none'">
             <div class="logo-text">Itifaqe <span>de Rabat</span></div>
         </div>
         <nav>
             <a href="#home">الرئيسية</a>
-            <a href="#program" onclick="toggleSection('program-box')">البرنامج التدريبي</a>
             <a href="#categories">الفئات العمرية</a>
-            <a href="#sponsors">الرعاية والمستشهرون</a>
-            <a href="#gallery">معرض الصور</a>
-            <a href="#register" onclick="toggleSection('register-box')">التسجيل والإنضمام</a>
+            <a href="#sponsors">المستشهرون</a>
+            <a href="#gallery">معرض الصور (16)</a>
             <a href="#staff">الطاقم التقني</a>
+            <a href="#coach-zone" class="coach-nav-btn" onclick="showCoachPortal()">🔒 فضاء المدربين AI</a>
             <a href="#contact">اتصل بنا</a>
         </nav>
-        <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل</button>
+        <button class="btn-cta" onclick="document.getElementById('coach-zone').scrollIntoView();">تسجيل المدربين</button>
     </header>
 
     <!-- Hero Banner -->
     <section id="home" class="hero">
-        <img src="logo.png" alt="شعار نادي الإتفاق الرباطي" class="hero-logo">
+        <img src="logo.png" alt="لوغو نادي الإتفاق الرباطي" class="hero-logo" onerror="this.style.display='none'">
         <h1>نادي الإتفاق الرباطي</h1>
-        <p>تطوير المواهب الكروية وفق أحدث البرامج التربوية والبدنية - العزيمة والإصرار نحو القمة.</p>
-        <div class="hero-buttons">
-            <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل أونلاين</button>
-            <button class="btn-secondary" onclick="toggleSection('sponsor-form-box')">طلب شراكة واستشهار</button>
+        <p>المنصة الرياضية الذكية المجهزة بنظام التحليل الميداني، رادار المهارات ومطابقة المواهب (AI Talent Matching).</p>
+    </section>
+
+    <!-- 🔒 فضاء المدربين الذكي بالأكواد الخاصة -->
+    <section id="coach-zone">
+        <div id="login-screen" class="login-box">
+            <h3 style="color: #16a34a; margin-bottom: 8px;">🔒 بوابة المدربين والشركاء المعتمدين</h3>
+            <p style="color: #9ca3af; font-size: 13px; margin-bottom: 15px;">أدخل كود التوثيق الخاص بك للوصول للأدوات الذكية وتحليل البيانات.</p>
+            <div class="form-group">
+                <input type="password" id="passInput" placeholder="أدخل الكود الخاص بك (مثال: COACH-...)">
+            </div>
+            <button class="btn-cta" onclick="checkCoachCode()" style="width: 100%;">تسجيل الدخول الموثق</button>
+            <p id="errorMsg" style="color: #ef4444; font-size: 13px; margin-top: 10px; display: none;">الكود غير صحيح! يرجى التأكد من كتابة الكود بدقة.</p>
         </div>
 
-        <!-- قسم البرنامج التدريبي القابل للطي -->
-        <div id="program-box" class="toggle-box">
-            <h3 style="color:#16a34a; margin-bottom: 10px;">البرنامج التدريبي المعتمد</h3>
-            <p>يعتمد نادي الإتفاق الرباطي منهجية تدريبية متكاملة تشمل ثلاث ركائز أساسية:</p>
-            <ul style="text-align: right; margin: 15px 20px; color:#d1d5db;">
-                <li>⚽ <b>التطوير المهاراتي والفردي:</b> التحكم بالكرة، التمرير الدقيق، والتفكير السريع داخل الملعب.</li>
-                <li>🏃‍♂️ <b>الإعداد البدني والوقائي:</b> رفع اللياقة والسرعة تحت إشراف متخصصين.</li>
-                <li>🧠 <b>الانضباط والروح الرياضية:</b> ترسيخ قيم الاحترام والعمل الجماعي والتكتيك الميداني.</li>
-            </ul>
-        </div>
+        <!-- Dashboard -->
+        <div id="coach-content" class="coach-portal">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h2>مرحباً الكابتن: <span id="currentCoachName" style="color: #16a34a;"></span> <span class="badge-verified">✓ موثق</span></h2>
+                    <p style="color: #9ca3af; font-size: 12px;">المسمى: <span id="currentCoachRole"></span> | الشارة: <span style="color:#eab308;">⭐ مكتشف المواهب</span> | النقاط: <span style="color:#16a34a; font-weight:bold;">1,250 نقطة</span></p>
+                </div>
+                <button onclick="logoutCoach()" style="background-color: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px;">تسجيل الخروج</button>
+            </div>
 
-        <!-- قسم استمارة التسجيل أونلاين القابل للطي -->
-        <div id="register-box" class="toggle-box" style="max-width: 600px; margin: 20px auto 0;">
-            <h3 style="color:#16a34a; margin-bottom: 15px;">استمارة التسجيل الإلكترونية</h3>
-            <form onsubmit="alert('تم إرسال طلب التسجيل بنجاح! سيتواصل معكم إدارة النادي.'); return false;">
-                <div class="form-group">
-                    <label>اسم الطفل الكامل:</label>
-                    <input type="text" required placeholder="أدخل اسم الطفل">
+            <!-- TABS -->
+            <div class="portal-tabs">
+                <button class="tab-btn active" onclick="switchTab('tab-eval')">📊 التقييم ورادار المهارات</button>
+                <button class="tab-btn" onclick="switchTab('tab-ai')">🤖 مطابقة المواهب (AI Match)</button>
+                <button class="tab-btn" onclick="switchTab('tab-analytics')">📈 تتبع التطور (Progress)</button>
+                <button class="tab-btn" onclick="switchTab('tab-content')">🎥 المحتوى التعليمي</button>
+                <button class="tab-btn" onclick="switchTab('tab-community')">💬 مجتمع المدربين المغلق</button>
+            </div>
+
+            <!-- TAB 1: Evaluation & Radar -->
+            <div id="tab-eval" class="tab-content active">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div>
+                        <h3 style="color: #16a34a; margin-bottom: 10px;">إدخال تقييم مهاراتي جديد</h3>
+                        <form onsubmit="addAdvancedEval(event)">
+                            <div class="form-group"><label>اسم الطفل الكامل:</label><input type="text" id="pName" required placeholder="مثال: طه السكوري"></div>
+                            <div class="form-group">
+                                <label>الفئة العمرية:</label>
+                                <select id="pCat"><option>U7 - U10 (البراعم)</option><option>U11 - U13 (الصغار)</option><option>U14 - U15 (الفتيان)</option></select>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="form-group"><label>السرعة (10/1):</label><input type="number" id="sSpeed" min="1" max="10" value="8" required></div>
+                                <div class="form-group"><label>التمرير (10/1):</label><input type="number" id="sPass" min="1" max="10" value="7" required></div>
+                                <div class="form-group"><label>التسديد (10/1):</label><input type="number" id="sShoot" min="1" max="10" value="8" required></div>
+                                <div class="form-group"><label>اللياقة (10/1):</label><input type="number" id="sStamina" min="1" max="10" value="9" required></div>
+                            </div>
+                            <div class="form-group"><label>ملاحظات واستفسارات المدرب:</label><textarea id="pNotes" rows="2" placeholder="ملاحظة حول أداء اللاعب..."></textarea></div>
+                            <button type="submit" class="btn-cta" style="width: 100%;">حفظ وإنشاء بطاقة الرادار</button>
+                        </form>
+                    </div>
+
+                    <div style="text-align: center; background: #141c16; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #16a34a; margin-bottom: 10px;">رسم رادار المهارات (Radar Chart)</h4>
+                        <div class="radar-container"><canvas id="radarChart"></canvas></div>
+                        <button onclick="window.print()" class="btn-cta" style="margin-top: 15px; background-color: #2563eb;">📄 تصدير تقرير PDF رسمي باسم المدرب</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>تاريخ الميلاد / الفئة:</label>
-                    <select required>
-                        <option value="">اختر الفئة العمرية</option>
-                        <option>مدرسة البراعم (U7 - U10)</option>
-                        <option>فئة الصغار (U11 - U13)</option>
-                        <option>فئة الفتيان (U14 - U15)</option>
-                    </select>
+            </div>
+
+            <!-- TAB 2: AI Talent Matching -->
+            <div id="tab-ai" class="tab-content">
+                <h3 style="color: #16a34a; margin-bottom: 10px;">🤖 نظام مطابقة المواهب بالذكاء الاصطناعي</h3>
+                <p style="color: #9ca3af; font-size: 13px; margin-bottom: 15px;">تحليل القاعدة البرمجية لاقتراح لاعبين بنفس المواصفات المطلوبة.</p>
+                <button class="btn-cta" onclick="runAIMatching()" style="margin-bottom: 15px;">🔍 تشغيل مطابقة المواهب الذكية</button>
+                <div id="aiResults" style="display: none; background: #141c16; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #22c55e;">🎯 أفضل المواهب المطابقة لمواصفاتك الكروية:</h4>
+                    <ul style="margin: 10px 20px; color: #d1d5db; font-size: 13px;">
+                        <li><b>اللاعب: ياسين براهيمي (U13)</b> - نسبة التطابق 94% (تمتلك مهارات تمرير وسرعة مطابقة لمطلوبك).</li>
+                        <li><b>اللاعب: مهدي الناصري (U15)</b> - نسبة التطابق 89% (صانع ألعاب رؤية ميدانية عالية).</li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label>اسم ولي الأمر:</label>
-                    <input type="text" required placeholder="أدخل اسم ولي الأمر">
+            </div>
+
+            <!-- TAB 3: Progress Analytics -->
+            <div id="tab-analytics" class="tab-content">
+                <h3 style="color: #16a34a; margin-bottom: 10px;">📈 تتبع التطور الزمني للاعبين (Progress Tracking)</h3>
+                <div style="max-width: 600px; margin: 0 auto; background: #141c16; padding: 15px; border-radius: 8px;">
+                    <canvas id="progressChart"></canvas>
                 </div>
-                <div class="form-group">
-                    <label>رقم الهاتف للاتصال:</label>
-                    <input type="tel" required placeholder="07XXXXXXXX">
+            </div>
+
+            <!-- TAB 4: Educational Content -->
+            <div id="tab-content" class="tab-content">
+                <h3 style="color: #16a34a; margin-bottom: 10px;">🎥 منصة المحتوى التعليمي للمدربين</h3>
+                <form onsubmit="alert('تم نشر الفيديو التعليمي بنجاح في منصة اللاعبين!'); return false;" style="max-width: 500px;">
+                    <div class="form-group"><label>عنوان الشرح / التمرين:</label><input type="text" placeholder="مثال: كيفية التمركز الصحيح عند الضغط العالي" required></div>
+                    <div class="form-group"><label>رابط الفيديو (YouTube/Reels):</label><input type="url" placeholder="https://..." required></div>
+                    <button type="submit" class="btn-cta">نشر المقطع التعليمي للمشتركين</button>
+                </form>
+            </div>
+
+            <!-- TAB 5: Coach Forum -->
+            <div id="tab-community" class="tab-content">
+                <h3 style="color: #16a34a; margin-bottom: 10px;">💬 مجتمع المدربين المغلق</h3>
+                <div style="background: #141c16; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-size: 13px; color: #16a34a;"><b>الكابتن آدم القدوري:</b> "يرجى التركيز على التمرير السريع من لمسة واحدة في تدريبات هذا الأسبوع."</p>
                 </div>
-                <button type="submit" class="btn-cta" style="width: 100%;">إرسال طلب الانضمام</button>
-            </form>
+                <div class="form-group"><input type="text" placeholder="أكتب فكرة تكتيكية جديدة..."></div>
+                <button class="btn-cta" onclick="alert('تم إرسال رسالتك للمجموعة');">إرسال للمجموعة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الصور الكامل (أكثر من 15 صورة) -->
+    <section id="gallery">
+        <h2 class="section-title">معرض الصور والأنشطة (16 صورة)</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="photo1.jpg" alt="1" onerror="this.src='https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600'"><div class="gallery-caption">تدريبات التحكم بالكرة</div></div>
+            <div class="gallery-item"><img src="photo2.jpg" alt="2" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600'"><div class="gallery-caption">التحضير للمباريات</div></div>
+            <div class="gallery-item"><img src="photo3.jpg" alt="3" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600'"><div class="gallery-caption">الروح الجماعية</div></div>
+            <div class="gallery-item"><img src="photo4.jpg" alt="4" onerror="this.src='https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600'"><div class="gallery-caption">الإعداد البدني</div></div>
+            <div class="gallery-item"><img src="photo5.jpg" alt="5" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=600'"><div class="gallery-caption">المباريات الودية</div></div>
+            <div class="gallery-item"><img src="photo6.jpg" alt="6" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=600'"><div class="gallery-caption">تكتيك التمرير</div></div>
+            <div class="gallery-item"><img src="photo7.jpg" alt="7" onerror="this.src='https://images.unsplash.com/photo-1560272564-669be0746618?q=80&w=600'"><div class="gallery-caption">تدريبات الحراس</div></div>
+            <div class="gallery-item"><img src="photo8.jpg" alt="8" onerror="this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=600'"><div class="gallery-caption">فئة البراعم</div></div>
+            <div class="gallery-item"><img src="photo9.jpg" alt="9" onerror="this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600'"><div class="gallery-caption">السرعة والرشاقة</div></div>
+            <div class="gallery-item"><img src="photo10.jpg" alt="10" onerror="this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=600'"><div class="gallery-caption">التركيز الذهني</div></div>
+            <div class="gallery-item"><img src="photo11.jpg" alt="11" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600'"><div class="gallery-caption">توجيهات الطاقم التقني</div></div>
+            <div class="gallery-item"><img src="photo12.jpg" alt="12" onerror="this.src='https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600'"><div class="gallery-caption">تقوية اللياقة</div></div>
+            <div class="gallery-item"><img src="photo13.jpg" alt="13" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600'"><div class="gallery-caption">الاحتفال بالأهداف</div></div>
+            <div class="gallery-item"><img src="photo14.jpg" alt="14" onerror="this.src='https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600'"><div class="gallery-caption">تطوير مهارات القدمين</div></div>
+            <div class="gallery-item"><img src="photo15.jpg" alt="15" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=600'"><div class="gallery-caption">تتويج وتكريم البراعم</div></div>
+            <div class="gallery-item"><img src="photo16.jpg" alt="16" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=600'"><div class="gallery-caption">صورة جماعية للنادي</div></div>
+        </div>
+    </section>
+
+    <!-- قسم المستشهرين (صورتين) -->
+    <section id="sponsors" style="background-color: #111813; border-radius: 12px; margin: 20px 5%;">
+        <h2 class="section-title">شركاء النجاح والمستشهرون</h2>
+        <div class="sponsors-grid">
+            <!-- المستشهر 1 -->
+            <a href="https://www.instagram.com/galaxy_tiles_ceramic?igsh=MXMyNW8xcm83cGZlNQ==" target="_blank" class="sponsor-card">
+                <img src="sponsor1.png" alt="Galaxy Tiles Ceramic" class="sponsor-logo" onerror="this.src='https://via.placeholder.com/150x70/141c16/16a34a?text=Galaxy+Tiles'">
+                <h4>Galaxy Tiles Ceramic</h4>
+                <span>مستشهر رسمي للنادي</span>
+            </a>
+            <!-- المستشهر 2 -->
+            <div class="sponsor-card">
+                <img src="sponsor2.png" alt="مجلس مقاطعة اليوسفية - الرباط" class="sponsor-logo" onerror="this.src='https://via.placeholder.com/150x70/141c16/16a34a?text=Conseil+Youssoufia'">
+                <h4>مجلس مقاطعة اليوسفية - الرباط</h4>
+                <span>شريك مؤسساتي وداعم</span>
+            </div>
         </div>
     </section>
 
@@ -392,211 +293,151 @@
     <section id="categories">
         <h2 class="section-title">الفئات العمرية بالنادي</h2>
         <div class="grid-cards">
-            <div class="card">
-                <h3>مدرسة البراعم (U7 - U10)</h3>
-                <p class="role">من 6 إلى 10 سنوات</p>
-                <p>تطوير المهارات الأساسية والتحكم بالكرة وتنمية الشغف بالرياضة.</p>
-            </div>
-            <div class="card">
-                <h3>فئة الصغار (U11 - U13)</h3>
-                <p class="role">من 11 إلى 13 سنة</p>
-                <p>التركيز على التكتيك الأساسي والانسجام والتمرير الجماعي.</p>
-            </div>
-            <div class="card">
-                <h3>فئة الفتيان (U14 - U15)</h3>
-                <p class="role">من 14 إلى 15 سنة</p>
-                <p>الإعداد البدني الاحترافي وصقل المهارات التنافسية الميدانية.</p>
-            </div>
+            <div class="card"><h4>مدرسة البراعم (U7 - U10)</h4><p style="color:#9ca3af; font-size:13px;">من 6 إلى 10 سنوات - المهارات والشغف الكروي.</p></div>
+            <div class="card"><h4>فئة الصغار (U11 - U13)</h4><p style="color:#9ca3af; font-size:13px;">من 11 إلى 13 سنة - التكتيك والانسجام الجماعي.</p></div>
+            <div class="card"><h4>فئة الفتيان (U14 - U15)</h4><p style="color:#9ca3af; font-size:13px;">من 14 إلى 15 سنة - الإعداد البدني والتنافسي.</p></div>
         </div>
     </section>
 
-    <!-- قسم المستشهرين والشركاء -->
-    <section id="sponsors" style="background-color: #111813; border-radius: 15px; margin: 20px 5%;">
-        <h2 class="section-title">شركاء النجاح والمستشهرون</h2>
-        <p style="text-align: center; color: #9ca3af; margin-bottom: 25px;">نشكر شركاءنا ومستشهرينا الحاليين على دعم مسيرة نادي الإتفاق الرباطي</p>
-        
-        <!-- شبكة المستشهرين الحاليين -->
-        <div class="sponsors-grid">
-            <div class="sponsor-card">
-                <img src="https://via.placeholder.com/120x60/16a34a/ffffff?text=Sponsor+1" alt="المستشهر الرسمي" class="sponsor-logo">
-                <h4>المستشهر الرسمي الأول</h4>
-                <span>شريك ذهبي</span>
-            </div>
-            <div class="sponsor-card">
-                <img src="https://via.placeholder.com/120x60/2e3d34/ffffff?text=Partner+2" alt="المستشهر الثاني" class="sponsor-logo">
-                <h4>شريك التجهيزات الرياضية</h4>
-                <span>شريك رسمي</span>
-            </div>
-        </div>
-
-        <!-- زر الانضمام كمستشهر -->
-        <div style="text-align: center; margin-top: 25px;">
-            <button class="btn-cta" style="padding: 12px 28px; font-size: 15px;" onclick="toggleSection('sponsor-form-box')">💼 تقديم طلب استشهار / رعاية رسمي</button>
-        </div>
-
-        <!-- استمارة طلب الاستشهار الاحترافية -->
-        <div id="sponsor-form-box" class="toggle-box" style="max-width: 650px; margin: 25px auto 0;">
-            <h3 style="color:#16a34a; margin-bottom: 8px; text-align: center;">استمارة طلب الشراكة والاستشهار</h3>
-            <p style="color: #9ca3af; text-align: center; font-size: 14px; margin-bottom: 20px;">يرجى إدخال بيانات المؤسسة أو الشركة وسيقوم قسم العلاقات العامة بالنادي بالتواصل معكم فوراً.</p>
-            
-            <form onsubmit="alert('شكراً لاهتمامكم برعاية نادي الإتفاق الرباطي! تم استلام طلبكم بنجاح وسيتواصل معكم المكتب التنفيذي قريباً.'); return false;">
-                <div class="form-group">
-                    <label>اسم الشركة / المؤسسة / الجهة الداعمة *</label>
-                    <input type="text" required placeholder="مثال: شركة المغرب للتجهيزات">
-                </div>
-                <div class="form-group">
-                    <label>اسم ممثل الشركة / المسؤول *</label>
-                    <input type="text" required placeholder="الاسم الكامل للمسؤول">
-                </div>
-                <div class="form-group">
-                    <label>رقم الهاتف المباشر *</label>
-                    <input type="tel" required placeholder="06XXXXXXXX / 07XXXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>البريد الإلكتروني المخصص للعمل *</label>
-                    <input type="email" required placeholder="contact@company.ma">
-                </div>
-                <div class="form-group">
-                    <label>نوع عقد الرعاية / الاستشهار المطلوب *</label>
-                    <select required>
-                        <option value="">اختر باقة الاستشهار</option>
-                        <option>رعاية أقمصة النادي (Sponsoring Maillot)</option>
-                        <option>شريك رسمي للتجهيزات والمعدات الرياضية</option>
-                        <option>رعاية اللوحات الإعلانية بالملاعب والفعاليات</option>
-                        <option>رعاية حفل ختام الموسم وتكريم الأبطال</option>
-                        <option>دعم وتبرع عام لرباط المواهب</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>الميزانية التقديرية للرعاية (اختياري)</label>
-                    <select>
-                        <option value="">اختر الفئة التقديرية</option>
-                        <option>أقل من 10,000 درهم</option>
-                        <option>10,000 - 30,000 درهم</option>
-                        <option>أكثر من 50,000 درهم</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>ملاحظات أو مقترحات إضافية</label>
-                    <textarea rows="3" placeholder="أذكر أي تفاصيل أو متطلبات خاصة بطلب الرعاية..."></textarea>
-                </div>
-                <button type="submit" class="btn-cta" style="width: 100%; padding: 12px; font-size: 15px;">إرسال طلب الشراكة والأنضمام</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- معرض الصور الاحترافي -->
-    <section id="gallery">
-        <h2 class="section-title">معرض صور النادي والتدريبات</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=800" alt="تدريبات الفئات الصغرى">
-                <div class="gallery-caption">تدريبات التحكم بالكرة والمهارات</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800" alt="أرضية الملعب">
-                <div class="gallery-caption">التحضير للمباريات الودية</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800" alt="مباراة البراعم">
-                <div class="gallery-caption">الروح الجماعية والتنافس الإيجابي</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=800" alt="إعداد بدني">
-                <div class="gallery-caption">الإعداد البدني واللياقة</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- شروط والوثائق المطلوبة -->
-    <section id="register">
-        <h2 class="section-title">الوثائق والمعايير المطلوبة للتسجيل</h2>
-        <div class="grid-cards">
-            <div class="card" style="text-align: right;">
-                <h3 style="text-align: center;">الوثائق المطلوبة</h3>
-                <ul style="list-style: none; padding-right: 10px; color: #d1d5db;">
-                    <li>✓ شهادة مدرسية مع طابع فوق الصورة.</li>
-                    <li>✓ صورة شخصية حديثة.</li>
-                    <li>✓ عقد ازدياد.</li>
-                    <li>✓ نسخة من بطاقة ولي الأمر.</li>
-                    <li>✓ التزام مصادق عليه.</li>
-                </ul>
-            </div>
-            <div class="card" style="text-align: right;">
-                <h3 style="text-align: center;">معايير النادي</h3>
-                <p style="color: #d1d5db; margin-top: 10px;">
-                    يعتمد نادي الإتفاق الرباطي على معايير تربوية ورياضية صليبة تشمل: الالتزام بالسلوك الأخلاقي داخل وخارج الملعب، المواظبة التامة على مواعيد التدريبات، والاحترام المتبادل بين اللاعبين والأطقم التقنية.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- الطاقم التقني والتربوي -->
+    <!-- الطاقم التقني -->
     <section id="staff">
-        <h2 class="section-title">الطاقم التقني والتربوي للنادي</h2>
+        <h2 class="section-title">الطاقم التقني المعتمد بالنادي</h2>
         <div class="grid-cards">
-            <div class="card">
-                <h4>آدم القدوري</h4>
-                <p class="role">رئيس النادي والمدير التقني</p>
-            </div>
-            <div class="card">
-                <h4>عصام الكبوس</h4>
-                <p class="role">المسؤول عن برمجة المباريات وتدريب الفئات الصغرى</p>
-            </div>
-            <div class="card">
-                <h4>زكرياء حداوي</h4>
-                <p class="role">المسؤول عن اللوجستيك ومدرب الفئات الصغرى</p>
-            </div>
-            <div class="card">
-                <h4>سليمان بنغزالي</h4>
-                <p class="role">المدرب المسؤول عن الإعداد البدني</p>
-            </div>
-            <div class="card">
-                <h4>أمين بنجابر</h4>
-                <p class="role">مدرب الحراس</p>
-            </div>
+            <div class="card"><h4>آدم القدوري</h4><p style="color:#9ca3af; font-size:13px;">رئيس النادي والمدير التقني</p></div>
+            <div class="card"><h4>عصام الكبوس</h4><p style="color:#9ca3af; font-size:13px;">مسؤول البرمجة وتدريب الفئات الصغرى</p></div>
+            <div class="card"><h4>زكرياء الحداوي</h4><p style="color:#9ca3af; font-size:13px;">مسؤول اللوجستيك ومدرب الفئات</p></div>
+            <div class="card"><h4>سليمان بنغزالي</h4><p style="color:#9ca3af; font-size:13px;">مدرب الإعداد البدني</p></div>
+            <div class="card"><h4>أمين بنجابر</h4><p style="color:#9ca3af; font-size:13px;">مدرب الحراس الاحترافي</p></div>
         </div>
     </section>
 
-    <!-- Footer / اتصل بنا والملاعب -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-grid">
-            <div class="footer-col">
-                <h4>نادي الإتفاق الرباطي</h4>
-                <p>مؤسسة رياضية تربوية تهدف إلى صقل المواهب الكروية وتطوير أبطال الغد.</p>
+            <div>
+                <h4 style="color:#16a34a; margin-bottom:10px;">نادي الإتفاق الرباطي</h4>
+                <p style="color:#9ca3af; font-size:13px;">الرباط - المملكة المغربية</p>
             </div>
-            <div class="footer-col">
-                <h4>ملاعب ومقر النادي</h4>
-                <p>📍 ملعب حي الفرح</p>
-                <p>📍 ملعب دار السلام</p>
-                <p>📍 ملعب حي النهضة 1</p>
+            <div>
+                <h4 style="color:#16a34a; margin-bottom:10px;">تواصل معنا</h4>
+                <p style="color:#9ca3af; font-size:13px;">📞 0702497748</p>
+                <p style="color:#9ca3af; font-size:13px;">✉️ itifaqe.de.rabat.contact@gmail.com</p>
             </div>
-            <div class="footer-col">
-                <h4>تواصل معنا</h4>
-                <p>📞 الهاتف: 0702497748</p>
-                <p>✉️ البريد: itifaqe.de.rabat.contact@gmail.com</p>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>جميع الحقوق محفوظة © نادي الإتفاق الرباطي - Itifaqe de Rabat</p>
         </div>
     </footer>
 
-    <!-- JavaScript لإظهار وإخفاء الأقسام عند الضغط -->
+    <!-- JavaScript البرمجة والأنظمة الذكية -->
     <script>
-        function toggleSection(boxId) {
-            var box = document.getElementById(boxId);
-            if (box.classList.contains('active')) {
-                box.classList.remove('active');
+        const coachDatabase = {
+            "COACH-ADAM-QADDOURI-@14": { name: "آدم القدوري", role: "المدير التقني ورئيس النادي" },
+            "COACH-ISSAM-ALAKBOUS-@33": { name: "عصام الكبوس", role: "مدرب الفئات الصغرى ومسؤول المباريات" },
+            "COACH-ZAKARIA-HADAOUI-@22": { name: "زكرياء الحداوي", role: "مسؤول اللوجستيك ومدرب الفئات" },
+            "COACH-SOULAYMAN-BENGHAZALE-@44": { name: "سليمان بنغزالي", role: "مدرب الإعداد البدني" },
+            "COACH-AMIN-BENJABRI-@55": { name: "أمين بنجابر", role: "مدرب الحراس الاحترافي" }
+        };
+
+        let activeCoach = null;
+        let radarChartInstance = null;
+
+        function checkCoachCode() {
+            const code = document.getElementById("passInput").value.trim();
+            if (coachDatabase[code]) {
+                activeCoach = coachDatabase[code];
+                document.getElementById("currentCoachName").innerText = activeCoach.name;
+                document.getElementById("currentCoachRole").innerText = activeCoach.role;
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("coach-content").classList.add("active");
+                document.getElementById("errorMsg").style.display = "none";
+                
+                initRadarChart(8, 7, 8, 9);
+                initProgressChart();
             } else {
-                document.querySelectorAll('.toggle-box').forEach(function(el) {
-                    el.classList.remove('active');
-                });
-                box.classList.add('active');
-                box.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById("errorMsg").style.display = "block";
             }
         }
-    </script>
 
+        function logoutCoach() {
+            document.getElementById("coach-content").classList.remove("active");
+            document.getElementById("login-screen").style.display = "block";
+            document.getElementById("passInput").value = "";
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function showCoachPortal() {
+            document.getElementById("coach-zone").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function initRadarChart(speed, pass, shoot, stamina) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            if (radarChartInstance) radarChartInstance.destroy();
+
+            radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['السرعة', 'التمرير', 'التسديد', 'اللياقة البدنية'],
+                    datasets: [{
+                        label: 'تقييم مهارات اللاعب',
+                        data: [speed, pass, shoot, stamina],
+                        backgroundColor: 'rgba(22, 163, 74, 0.3)',
+                        borderColor: '#16a34a',
+                        pointBackgroundColor: '#22c55e'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: { min: 0, max: 10, ticks: { color: '#ffffff', stepSize: 2 }, grid: { color: '#2e3d34' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
+            });
+        }
+
+        function initProgressChart() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['أكتوبر', 'نوفمبر', 'ديسمبر', 'يناير', 'فبراير'],
+                    datasets: [{
+                        label: 'منحنى التطور الميداني العام (%)',
+                        data: [65, 70, 78, 85, 92],
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    plugins: { legend: { labels: { color: '#ffffff' } } },
+                    scales: {
+                        x: { ticks: { color: '#9ca3af' } },
+                        y: { ticks: { color: '#9ca3af' }, min: 50, max: 100 }
+                    }
+                }
+            });
+        }
+
+        function addAdvancedEval(e) {
+            e.preventDefault();
+            const spd = document.getElementById("sSpeed").value;
+            const pas = document.getElementById("sPass").value;
+            const sht = document.getElementById("sShoot").value;
+            const stm = document.getElementById("sStamina").value;
+            
+            initRadarChart(spd, pas, sht, stm);
+            alert("تم تحديث الرادار وحفظ التقييم بنجاح بتوقيع المدرب: " + activeCoach.name);
+        }
+
+        function runAIMatching() {
+            document.getElementById("aiResults").style.display = "block";
+        }
+    </script>
 </body>
 </html>
