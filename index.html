@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
    <meta name="google-site-verification" content="BXCAfItdE4OJJi7gMB9qiVyQGtq2M5OBj6uwpnZYS0E" />
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نادي الإتفاق الرباطي | Itifaqe de Rabat</title>
     <style>
@@ -36,8 +36,9 @@
             gap: 12px;
         }
         .logo-img {
-            height: 50px;
+            height: 55px;
             width: auto;
+            border-radius: 5px;
         }
         .logo-text {
             font-size: 20px;
@@ -52,6 +53,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
+            flex-wrap: wrap;
         }
         nav a {
             color: #d1d5db;
@@ -66,8 +68,8 @@
         .btn-cta {
             background-color: #16a34a;
             color: white;
-            padding: 8px 18px;
-            border-radius: 5px;
+            padding: 9px 20px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
@@ -79,22 +81,27 @@
             background-color: #15803d;
         }
 
-        /* Hero Banner with Custom Background */
+        /* Hero Banner */
         .hero {
             text-align: center;
-            padding: 110px 20px;
+            padding: 100px 20px;
             background: linear-gradient(rgba(13, 19, 14, 0.88), rgba(13, 19, 14, 0.95)), 
                         url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1200') center/cover fixed;
         }
-        .hero h1 {
-            font-size: 42px;
+        .hero-logo {
+            width: 110px;
+            height: auto;
             margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
             color: #ffffff;
         }
         .hero p {
             font-size: 18px;
             color: #9ca3af;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -110,7 +117,7 @@
             border: 2px solid #16a34a;
             color: #ffffff;
             padding: 10px 24px;
-            border-radius: 5px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
@@ -150,6 +157,78 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Sponsors Section Style */
+        .sponsors-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .sponsor-card {
+            background-color: #141c16;
+            border: 1px solid #2e3d34;
+            border-radius: 12px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 200px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            border-color: #16a34a;
+        }
+        .sponsor-logo {
+            max-width: 120px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .sponsor-card h4 {
+            color: #ffffff;
+            font-size: 16px;
+        }
+        .sponsor-card span {
+            color: #16a34a;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #2e3d34;
+            height: 200px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
         /* Categories & Staff Grids */
         .grid-cards {
             display: grid;
@@ -178,24 +257,31 @@
             margin-bottom: 10px;
         }
 
-        /* Registration Form Style */
+        /* Professional Form Style */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             text-align: right;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: #d1d5db;
+            font-size: 14px;
+            font-weight: 500;
         }
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 11px;
+            border-radius: 6px;
             border: 1px solid #2e3d34;
             background-color: #0d130e;
             color: #ffffff;
             font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #16a34a;
         }
 
         /* Footer */
@@ -242,9 +328,10 @@
             <a href="#home">الرئيسية</a>
             <a href="#program" onclick="toggleSection('program-box')">البرنامج التدريبي</a>
             <a href="#categories">الفئات العمرية</a>
+            <a href="#sponsors">الرعاية والمستشهرون</a>
+            <a href="#gallery">معرض الصور</a>
             <a href="#register" onclick="toggleSection('register-box')">التسجيل والإنضمام</a>
             <a href="#staff">الطاقم التقني</a>
-            <a href="#awards" onclick="toggleSection('voting-box')">التصويت والتكريم</a>
             <a href="#contact">اتصل بنا</a>
         </nav>
         <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل</button>
@@ -252,11 +339,12 @@
 
     <!-- Hero Banner -->
     <section id="home" class="hero">
+        <img src="logo.png" alt="شعار نادي الإتفاق الرباطي" class="hero-logo">
         <h1>نادي الإتفاق الرباطي</h1>
         <p>تطوير المواهب الكروية وفق أحدث البرامج التربوية والبدنية - العزيمة والإصرار نحو القمة.</p>
         <div class="hero-buttons">
             <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل أونلاين</button>
-            <button class="btn-secondary" onclick="toggleSection('program-box')">اكتشف برنامجنا التدريبي</button>
+            <button class="btn-secondary" onclick="toggleSection('sponsor-form-box')">طلب شراكة واستشهار</button>
         </div>
 
         <!-- قسم البرنامج التدريبي القابل للطي -->
@@ -322,6 +410,104 @@
         </div>
     </section>
 
+    <!-- قسم المستشهرين والشركاء -->
+    <section id="sponsors" style="background-color: #111813; border-radius: 15px; margin: 20px 5%;">
+        <h2 class="section-title">شركاء النجاح والمستشهرون</h2>
+        <p style="text-align: center; color: #9ca3af; margin-bottom: 25px;">نشكر شركاءنا ومستشهرينا الحاليين على دعم مسيرة نادي الإتفاق الرباطي</p>
+        
+        <!-- شبكة المستشهرين الحاليين -->
+        <div class="sponsors-grid">
+            <div class="sponsor-card">
+                <img src="https://via.placeholder.com/120x60/16a34a/ffffff?text=Sponsor+1" alt="المستشهر الرسمي" class="sponsor-logo">
+                <h4>المستشهر الرسمي الأول</h4>
+                <span>شريك ذهبي</span>
+            </div>
+            <div class="sponsor-card">
+                <img src="https://via.placeholder.com/120x60/2e3d34/ffffff?text=Partner+2" alt="المستشهر الثاني" class="sponsor-logo">
+                <h4>شريك التجهيزات الرياضية</h4>
+                <span>شريك رسمي</span>
+            </div>
+        </div>
+
+        <!-- زر الانضمام كمستشهر -->
+        <div style="text-align: center; margin-top: 25px;">
+            <button class="btn-cta" style="padding: 12px 28px; font-size: 15px;" onclick="toggleSection('sponsor-form-box')">💼 تقديم طلب استشهار / رعاية رسمي</button>
+        </div>
+
+        <!-- استمارة طلب الاستشهار الاحترافية -->
+        <div id="sponsor-form-box" class="toggle-box" style="max-width: 650px; margin: 25px auto 0;">
+            <h3 style="color:#16a34a; margin-bottom: 8px; text-align: center;">استمارة طلب الشراكة والاستشهار</h3>
+            <p style="color: #9ca3af; text-align: center; font-size: 14px; margin-bottom: 20px;">يرجى إدخال بيانات المؤسسة أو الشركة وسيقوم قسم العلاقات العامة بالنادي بالتواصل معكم فوراً.</p>
+            
+            <form onsubmit="alert('شكراً لاهتمامكم برعاية نادي الإتفاق الرباطي! تم استلام طلبكم بنجاح وسيتواصل معكم المكتب التنفيذي قريباً.'); return false;">
+                <div class="form-group">
+                    <label>اسم الشركة / المؤسسة / الجهة الداعمة *</label>
+                    <input type="text" required placeholder="مثال: شركة المغرب للتجهيزات">
+                </div>
+                <div class="form-group">
+                    <label>اسم ممثل الشركة / المسؤول *</label>
+                    <input type="text" required placeholder="الاسم الكامل للمسؤول">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف المباشر *</label>
+                    <input type="tel" required placeholder="06XXXXXXXX / 07XXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني المخصص للعمل *</label>
+                    <input type="email" required placeholder="contact@company.ma">
+                </div>
+                <div class="form-group">
+                    <label>نوع عقد الرعاية / الاستشهار المطلوب *</label>
+                    <select required>
+                        <option value="">اختر باقة الاستشهار</option>
+                        <option>رعاية أقمصة النادي (Sponsoring Maillot)</option>
+                        <option>شريك رسمي للتجهيزات والمعدات الرياضية</option>
+                        <option>رعاية اللوحات الإعلانية بالملاعب والفعاليات</option>
+                        <option>رعاية حفل ختام الموسم وتكريم الأبطال</option>
+                        <option>دعم وتبرع عام لرباط المواهب</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الميزانية التقديرية للرعاية (اختياري)</label>
+                    <select>
+                        <option value="">اختر الفئة التقديرية</option>
+                        <option>أقل من 10,000 درهم</option>
+                        <option>10,000 - 30,000 درهم</option>
+                        <option>أكثر من 50,000 درهم</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات أو مقترحات إضافية</label>
+                    <textarea rows="3" placeholder="أذكر أي تفاصيل أو متطلبات خاصة بطلب الرعاية..."></textarea>
+                </div>
+                <button type="submit" class="btn-cta" style="width: 100%; padding: 12px; font-size: 15px;">إرسال طلب الشراكة والأنضمام</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- معرض الصور الاحترافي -->
+    <section id="gallery">
+        <h2 class="section-title">معرض صور النادي والتدريبات</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=800" alt="تدريبات الفئات الصغرى">
+                <div class="gallery-caption">تدريبات التحكم بالكرة والمهارات</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800" alt="أرضية الملعب">
+                <div class="gallery-caption">التحضير للمباريات الودية</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800" alt="مباراة البراعم">
+                <div class="gallery-caption">الروح الجماعية والتنافس الإيجابي</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=800" alt="إعداد بدني">
+                <div class="gallery-caption">الإعداد البدني واللياقة</div>
+            </div>
+        </div>
+    </section>
+
     <!-- شروط والوثائق المطلوبة -->
     <section id="register">
         <h2 class="section-title">الوثائق والمعايير المطلوبة للتسجيل</h2>
@@ -368,35 +554,6 @@
             <div class="card">
                 <h4>أمين بنجابر</h4>
                 <p class="role">مدرب الحراس</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- التغطيات والمباريات وحفل الاختتام -->
-    <section id="news">
-        <h2 class="section-title">المباريات والتكريم السنوي</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>تقارير المباريات الودية</h3>
-                <p>ينظم النادي مباريات ودية دورية مع أندية ومراكز رياضية لتعزيز الاحتكاك الميداني واكتساب الخبرة للبراعم والشباب.</p>
-            </div>
-            <div class="card">
-                <h3>تصويت وتكريم مواهب الموسم</h3>
-                <p>يتم تكريم أبطال ومواهب السنة في **حفل الاختتام بنهاية الموسم**، حيث سيفتح باب التصويت بالموقع لمدة أسبوع لاختيار الأفضل.</p>
-                <button class="btn-secondary" style="margin-top: 15px;" onclick="toggleSection('voting-box')">عرض منصة التصويت</button>
-            </div>
-        </div>
-
-        <!-- منصة التصويت القابلة للطي -->
-        <div id="voting-box" class="toggle-box" style="text-align: center;">
-            <h3 style="color:#16a34a; margin-bottom: 10px;">منصة تصويت مواهب الموسم (حفل الاختتام)</h3>
-            <p style="color:#9ca3af; margin-bottom: 20px;">تفتح المنصة رسمياً في الأسبوع الأخير من الموسم الرياضي للتصويت للاعبين المتميزين.</p>
-            <div class="grid-cards">
-                <div class="card">
-                    <h4>لاعب متألق (نموذج)</h4>
-                    <p class="role">المركز: مهاجم | السن: 12 سنة</p>
-                    <button class="btn-cta" disabled style="opacity: 0.6; cursor: not-allowed;">التصويت يفتح بنهاية الموسم</button>
-                </div>
             </div>
         </div>
     </section>
