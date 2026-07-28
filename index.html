@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-   <meta name="google-site-verification" content="BXCAfItdE4OJJi7gMB9qiVyQGtq2M5OBj6uwpnZYS0E" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نادي الإتفاق الرباطي | Itifaqe de Rabat</title>
@@ -48,10 +47,10 @@
         section { padding: 40px 5%; }
         .section-title { text-align: center; font-size: 26px; margin-bottom: 25px; color: #16a34a; }
 
-        /* معرض الصور (أكثر من 15 صورة) */
+        /* معرض الصور (7 صور) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 15px;
         }
         .gallery-item {
@@ -59,7 +58,7 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #2e3d34;
-            height: 180px;
+            height: 200px;
             background-color: #141c16;
         }
         .gallery-item img {
@@ -70,21 +69,41 @@
         .gallery-item:hover img { transform: scale(1.08); }
         .gallery-caption {
             position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.88));
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
             padding: 8px; text-align: center; font-size: 12px; color: #ffffff;
         }
 
-        /* قسم المستشهرين (صورتين) */
+        /* قسم المستشهرين (صورتين مع الرابطين) */
         .sponsors-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         .sponsor-card {
             background-color: #141c16; border: 1px solid #2e3d34; border-radius: 10px;
             padding: 20px 30px; text-align: center; text-decoration: none; transition: 0.3s;
-            min-width: 250px;
+            min-width: 260px;
         }
         .sponsor-card:hover { border-color: #16a34a; transform: translateY(-4px); }
         .sponsor-logo { max-width: 140px; height: 65px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
         .sponsor-card h4 { color: #ffffff; font-size: 15px; margin-bottom: 4px; }
         .sponsor-card span { color: #16a34a; font-size: 12px; font-weight: bold; }
+
+        /* Forms Layout */
+        .forms-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .form-box {
+            background-color: #141c16;
+            border: 1px solid #2e3d34;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        .form-box h3 { color: #16a34a; margin-bottom: 15px; border-bottom: 1px solid #2e3d34; padding-bottom: 8px; font-size: 18px; }
+
+        .form-group { margin-bottom: 14px; text-align: right; }
+        .form-group label { display: block; margin-bottom: 5px; color: #d1d5db; font-size: 13px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2e3d34; background-color: #0d130e; color: #ffffff; font-size: 13px; outline: none;
+        }
 
         /* Coach Portal & Tabs */
         .coach-portal { background-color: #111813; border: 2px solid #16a34a; border-radius: 12px; padding: 25px; margin: 20px 0; display: none; }
@@ -105,12 +124,6 @@
         .card { background-color: #141c16; border: 1px solid #2e3d34; border-radius: 8px; padding: 18px; text-align: center; }
         .card h4 { color: #16a34a; margin-bottom: 6px; }
 
-        .form-group { margin-bottom: 14px; text-align: right; }
-        .form-group label { display: block; margin-bottom: 5px; color: #d1d5db; font-size: 13px; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2e3d34; background-color: #0d130e; color: #ffffff; font-size: 13px; outline: none;
-        }
-
         footer { background-color: #070a08; border-top: 1px solid #1f2923; padding: 30px 5% 15px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
     </style>
@@ -125,24 +138,76 @@
         </div>
         <nav>
             <a href="#home">الرئيسية</a>
+            <a href="#register-section">التسجيل والشراكة</a>
             <a href="#categories">الفئات العمرية</a>
             <a href="#sponsors">المستشهرون</a>
-            <a href="#gallery">معرض الصور (16)</a>
+            <a href="#gallery">معرض الصور (7)</a>
             <a href="#staff">الطاقم التقني</a>
-            <a href="#coach-zone" class="coach-nav-btn" onclick="showCoachPortal()">🔒 فضاء المدربين AI</a>
+            <a href="#coach-zone" class="coach-nav-btn" onclick="showCoachPortal()">🔒 بوابة المدربين AI</a>
             <a href="#contact">اتصل بنا</a>
         </nav>
-        <button class="btn-cta" onclick="document.getElementById('coach-zone').scrollIntoView();">تسجيل المدربين</button>
+        <button class="btn-cta" onclick="document.getElementById('register-section').scrollIntoView();">سجل الآن</button>
     </header>
 
     <!-- Hero Banner -->
     <section id="home" class="hero">
         <img src="logo.png" alt="لوغو نادي الإتفاق الرباطي" class="hero-logo" onerror="this.style.display='none'">
         <h1>نادي الإتفاق الرباطي</h1>
-        <p>المنصة الرياضية الذكية المجهزة بنظام التحليل الميداني، رادار المهارات ومطابقة المواهب (AI Talent Matching).</p>
+        <p>المنصة الرياضية الذكية الأولى المجهزة بنظام التحليل الميداني، رادار المهارات ومطابقة المواهب (AI Talent Matching).</p>
     </section>
 
-    <!-- 🔒 فضاء المدربين الذكي بالأكواد الخاصة -->
+    <!-- 📝 قسم التسجيل الشامل (اللاعبين + المستشهرين والرعاية) -->
+    <section id="register-section">
+        <h2 class="section-title">الانضمام والشراكة مع النادي</h2>
+        <div class="forms-container">
+            
+            <!-- 1. نموذج تسجيل اللاعبين الجدد -->
+            <div class="form-box">
+                <h3>⚽ طلب تسجيل لاعب جديد</h3>
+                <form onsubmit="alert('تم إرسال طلب تسجيل اللاعب بنجاح! سيتواصل معكم الطاقم الإداري قريباً.'); return false;">
+                    <div class="form-group"><label>اسم الطفل الكامل:</label><input type="text" placeholder="أدخل اسم الطفل" required></div>
+                    <div class="form-group"><label>تاريخ الميلاد:</label><input type="date" required></div>
+                    <div class="form-group">
+                        <label>الفئة العمرية:</label>
+                        <select required>
+                            <option value="">اختر الفئة</option>
+                            <option>U7 - U10 (البراعم)</option>
+                            <option>U11 - U13 (الصغار)</option>
+                            <option>U14 - U15 (الفتيان)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>رقم هاتف ولي الأمر:</label><input type="tel" placeholder="06XXXXXXXX" required></div>
+                    <div class="form-group"><label>عنوان السكن (الرباط):</label><input type="text" placeholder="الحي / المقاطعة"></div>
+                    <button type="submit" class="btn-cta" style="width: 100%;">إرسال طلب التسجيل</button>
+                </form>
+            </div>
+
+            <!-- 2. نموذج طلب الشراكة والمستشهرين -->
+            <div class="form-box">
+                <h3>🤝 طلب شراكة أو إعلان (للمستشهرين)</h3>
+                <form onsubmit="alert('شكراً لتواصلكم! تم تسليم طلب الشراكة لإدارة النادي بنجاح.'); return false;">
+                    <div class="form-group"><label>اسم الشركة / المؤسسة:</label><input type="text" placeholder="اسم الشركة أو المستشهر" required></div>
+                    <div class="form-group"><label>اسم الشخص المسؤول:</label><input type="text" placeholder="الاسم الكامل" required></div>
+                    <div class="form-group"><label>رقم الهاتف للاتصال:</label><input type="tel" placeholder="06XXXXXXXX" required></div>
+                    <div class="form-group">
+                        <label>نوع الشراكة المطلوبة:</label>
+                        <select required>
+                            <option value="">اختر نوع الشراكة</option>
+                            <option>استشهار على قمصان النادي</option>
+                            <option>لوحات إعلانية في الملعب</option>
+                            <option>دعم فعاليات وبطولات</option>
+                            <option>شراكة إعلامية / تقنية</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>ملاحظات إضافية:</label><textarea rows="2" placeholder="تفاصيل العرض أو الاستفسار..."></textarea></div>
+                    <button type="submit" class="btn-cta" style="width: 100%; background-color: #2563eb;">تقديم طلب الشراكة</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 🔒 بوابة المدربين الذكية (مستقلة بالكامل) -->
     <section id="coach-zone">
         <div id="login-screen" class="login-box">
             <h3 style="color: #16a34a; margin-bottom: 8px;">🔒 بوابة المدربين والشركاء المعتمدين</h3>
@@ -247,45 +312,37 @@
         </div>
     </section>
 
-    <!-- معرض الصور الكامل (أكثر من 15 صورة) -->
+    <!-- معرض الصور الخاص بالنادي (7 صور) -->
     <section id="gallery">
-        <h2 class="section-title">معرض الصور والأنشطة (16 صورة)</h2>
+        <h2 class="section-title">معرض الصور والأنشطة (7 صور)</h2>
         <div class="gallery-grid">
             <div class="gallery-item"><img src="photo1.jpg" alt="1" onerror="this.src='https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600'"><div class="gallery-caption">تدريبات التحكم بالكرة</div></div>
             <div class="gallery-item"><img src="photo2.jpg" alt="2" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600'"><div class="gallery-caption">التحضير للمباريات</div></div>
-            <div class="gallery-item"><img src="photo3.jpg" alt="3" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600'"><div class="gallery-caption">الروح الجماعية</div></div>
-            <div class="gallery-item"><img src="photo4.jpg" alt="4" onerror="this.src='https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600'"><div class="gallery-caption">الإعداد البدني</div></div>
+            <div class="gallery-item"><img src="photo3.jpg" alt="3" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600'"><div class="gallery-caption">الروح الجماعية والتكتيك</div></div>
+            <div class="gallery-item"><img src="photo4.jpg" alt="4" onerror="this.src='https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600'"><div class="gallery-caption">الإعداد البدني والرشاقة</div></div>
             <div class="gallery-item"><img src="photo5.jpg" alt="5" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=600'"><div class="gallery-caption">المباريات الودية</div></div>
-            <div class="gallery-item"><img src="photo6.jpg" alt="6" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=600'"><div class="gallery-caption">تكتيك التمرير</div></div>
-            <div class="gallery-item"><img src="photo7.jpg" alt="7" onerror="this.src='https://images.unsplash.com/photo-1560272564-669be0746618?q=80&w=600'"><div class="gallery-caption">تدريبات الحراس</div></div>
-            <div class="gallery-item"><img src="photo8.jpg" alt="8" onerror="this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=600'"><div class="gallery-caption">فئة البراعم</div></div>
-            <div class="gallery-item"><img src="photo9.jpg" alt="9" onerror="this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600'"><div class="gallery-caption">السرعة والرشاقة</div></div>
-            <div class="gallery-item"><img src="photo10.jpg" alt="10" onerror="this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=600'"><div class="gallery-caption">التركيز الذهني</div></div>
-            <div class="gallery-item"><img src="photo11.jpg" alt="11" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600'"><div class="gallery-caption">توجيهات الطاقم التقني</div></div>
-            <div class="gallery-item"><img src="photo12.jpg" alt="12" onerror="this.src='https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600'"><div class="gallery-caption">تقوية اللياقة</div></div>
-            <div class="gallery-item"><img src="photo13.jpg" alt="13" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600'"><div class="gallery-caption">الاحتفال بالأهداف</div></div>
-            <div class="gallery-item"><img src="photo14.jpg" alt="14" onerror="this.src='https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=600'"><div class="gallery-caption">تطوير مهارات القدمين</div></div>
-            <div class="gallery-item"><img src="photo15.jpg" alt="15" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=600'"><div class="gallery-caption">تتويج وتكريم البراعم</div></div>
-            <div class="gallery-item"><img src="photo16.jpg" alt="16" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=600'"><div class="gallery-caption">صورة جماعية للنادي</div></div>
+            <div class="gallery-item"><img src="photo6.jpg" alt="6" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623266010b?q=80&w=600'"><div class="gallery-caption">تدريبات حراس المرمى</div></div>
+            <div class="gallery-item"><img src="photo7.jpg" alt="7" onerror="this.src='https://images.unsplash.com/photo-1560272564-669be0746618?q=80&w=600'"><div class="gallery-caption">صورة جماعية لفئات النادي</div></div>
         </div>
     </section>
 
-    <!-- قسم المستشهرين (صورتين) -->
+    <!-- قسم المستشهرين (صورتان مع الرابطين الرسميّين) -->
     <section id="sponsors" style="background-color: #111813; border-radius: 12px; margin: 20px 5%;">
         <h2 class="section-title">شركاء النجاح والمستشهرون</h2>
         <div class="sponsors-grid">
-            <!-- المستشهر 1 -->
+            <!-- المستشهر 1: Galaxy Tiles Ceramic -->
             <a href="https://www.instagram.com/galaxy_tiles_ceramic?igsh=MXMyNW8xcm83cGZlNQ==" target="_blank" class="sponsor-card">
                 <img src="sponsor1.png" alt="Galaxy Tiles Ceramic" class="sponsor-logo" onerror="this.src='https://via.placeholder.com/150x70/141c16/16a34a?text=Galaxy+Tiles'">
                 <h4>Galaxy Tiles Ceramic</h4>
-                <span>مستشهر رسمي للنادي</span>
+                <span>مستشهر رسمي للنادي (زيارة الحساب)</span>
             </a>
-            <!-- المستشهر 2 -->
-            <div class="sponsor-card">
+            
+            <!-- المستشهر 2: مجلس مقاطعة اليوسفية-الرباط -->
+            <a href="https://www.facebook.com/share/19CjMoUG32/" target="_blank" class="sponsor-card">
                 <img src="sponsor2.png" alt="مجلس مقاطعة اليوسفية - الرباط" class="sponsor-logo" onerror="this.src='https://via.placeholder.com/150x70/141c16/16a34a?text=Conseil+Youssoufia'">
                 <h4>مجلس مقاطعة اليوسفية - الرباط</h4>
-                <span>شريك مؤسساتي وداعم</span>
-            </div>
+                <span>شريك مؤسساتي وداعم (زيارة الصفحة)</span>
+            </a>
         </div>
     </section>
 
