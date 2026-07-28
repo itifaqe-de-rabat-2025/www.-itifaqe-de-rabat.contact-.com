@@ -2,10 +2,139 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>موقع Itifaqe de Rabat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itifaqe de Rabat | نادي اتفاق الرباط</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+        /* Header / الشريط العلوي */
+        header {
+            background-color: #1e293b;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #e11d48;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: #e11d48;
+        }
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #e11d48;
+        }
+        /* Hero Section / الواجهة الرئيسية */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200') center/cover;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #e11d48;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #be123c;
+        }
+        /* Match Section / قسم المباريات */
+        .match-card {
+            background-color: #1e293b;
+            max-width: 600px;
+            margin: -40px auto 50px;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .team {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .vs {
+            background: #e11d48;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        /* Footer / التذييل */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0b0f19;
+            color: #64748b;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <h1>مرحباً بكم في موقع Itifaqe de Rabat</h1>
-    <p>الموقع الرسمي - مرحباً بجميع الزوار.</p>
+
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="logo">Itifaqe <span>Rabat</span></div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">الأخبار</a>
+            <a href="#">الفريق</a>
+            <a href="#">المباريات</a>
+            <a href="#">تواصل معنا</a>
+        </nav>
+    </header>
+
+    <!-- الواجهة الرئيسية -->
+    <section class="hero">
+        <h1>نادي اتفاق الرباط</h1>
+        <p>الموقع الرسمي لنادي Itifaqe de Rabat - العزيمة والإصرار نحو القمة</p>
+        <a href="#" class="btn">اكتشف جديد النادي</a>
+    </section>
+
+    <!-- كارت المباراة القادمة -->
+    <div class="match-card">
+        <div class="team">اتفاق الرباط</div>
+        <div class="vs">المباراة القادمة</div>
+        <div class="team">الفريق المنافس</div>
+    </div>
+
+    <!-- التذييل -->
+    <footer>
+        <p>&copy; 2026 جميع الحقوق محفوظة - Itifaqe de Rabat</p>
+    </footer>
+
 </body>
 </html>
