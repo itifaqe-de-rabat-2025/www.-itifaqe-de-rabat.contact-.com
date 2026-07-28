@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية نادي اتفاق الرباط | Itifaqe de Rabat Youth</title>
+    <title>نادي الإتفاق الرباطي | Itifaqe de Rabat</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #121814;
+            background-color: #0d130e;
             color: #ffffff;
             line-height: 1.6;
         }
 
-        /* 1. Header & Navigation */
+        /* Header & Navigation */
         header {
-            background-color: #1a231e;
+            background-color: #141c16;
             padding: 12px 5%;
             display: flex;
             justify-content: space-between;
@@ -50,7 +50,7 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
         }
         nav a {
             color: #d1d5db;
@@ -71,17 +71,19 @@
             font-weight: bold;
             font-size: 14px;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
         .btn-cta:hover {
             background-color: #15803d;
         }
 
-        /* 2. Hero Banner */
+        /* Hero Banner with Custom Background */
         .hero {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(18, 24, 20, 0.85), rgba(18, 24, 20, 0.95)), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200') center/cover;
+            padding: 110px 20px;
+            background: linear-gradient(rgba(13, 19, 14, 0.88), rgba(13, 19, 14, 0.95)), 
+                        url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1200') center/cover fixed;
         }
         .hero h1 {
             font-size: 42px;
@@ -111,137 +113,99 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
+            cursor: pointer;
         }
         .btn-secondary:hover {
             background-color: #16a34a;
         }
 
-        /* Section Global Styling */
+        /* Section Styling */
         section {
-            padding: 60px 5%;
+            padding: 50px 5%;
         }
         .section-title {
             text-align: center;
             font-size: 28px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: #16a34a;
-            position: relative;
         }
 
-        /* 3A. Categories Table / Cards */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .category-card {
-            background-color: #1a231e;
+        /* Toggle Content Boxes */
+        .toggle-box {
+            display: none;
+            background-color: #141c16;
             border: 1px solid #2e3d34;
             border-radius: 10px;
             padding: 25px;
+            margin-top: 15px;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        .toggle-box.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Categories & Staff Grids */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #141c16;
+            border: 1px solid #2e3d34;
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
             transition: transform 0.3s;
         }
-        .category-card:hover {
+        .card:hover {
             transform: translateY(-5px);
             border-color: #16a34a;
         }
-        .category-card h3 {
+        .card h3, .card h4 {
             color: #16a34a;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .category-card .target {
-            font-size: 14px;
+        .card .role {
             color: #9ca3af;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
         }
 
-        /* 3B. Registration & Documents */
-        .registration-container {
-            background-color: #1a231e;
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid #2e3d34;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .registration-box h3 {
-            color: #16a34a;
+        /* Registration Form Style */
+        .form-group {
             margin-bottom: 15px;
+            text-align: right;
         }
-        .registration-box ul {
-            list-style: none;
-        }
-        .registration-box ul li {
-            margin-bottom: 10px;
-            padding-right: 20px;
-            position: relative;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
             color: #d1d5db;
         }
-        .registration-box ul li::before {
-            content: "✓";
-            color: #16a34a;
-            position: absolute;
-            right: 0;
-            font-weight: bold;
-        }
-
-        /* 3C. Staff */
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .staff-card {
-            background-color: #1a231e;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
             border: 1px solid #2e3d34;
-        }
-        .staff-card h4 {
+            background-color: #0d130e;
             color: #ffffff;
-            margin-top: 10px;
-        }
-        .staff-card p {
-            color: #16a34a;
             font-size: 14px;
         }
 
-        /* 3D. News */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .news-card {
-            background-color: #1a231e;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #2e3d34;
-        }
-        .news-content {
-            padding: 20px;
-        }
-        .news-content h4 {
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-        .news-content p {
-            color: #9ca3af;
-            font-size: 14px;
-        }
-
-        /* 4. Footer */
+        /* Footer */
         footer {
-            background-color: #0b0f0d;
+            background-color: #070a08;
             border-top: 1px solid #1f2923;
             padding: 40px 5% 20px;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
         }
@@ -256,161 +220,225 @@
             display: block;
             margin-bottom: 8px;
         }
-        .footer-col a:hover {
-            color: #16a34a;
-        }
         .copyright {
             text-align: center;
             color: #6b7280;
             font-size: 13px;
-            border-top: 1px solid #1a231e;
+            border-top: 1px solid #141c16;
             padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Header & Navigation -->
+    <!-- Header / Navigation -->
     <header>
         <div class="logo-container">
-            <img src="logo.png" alt="شعار اتفاق الرباط" class="logo-img">
-            <div class="logo-text">Itifaqe <span>Rabat</span></div>
+            <img src="logo.png" alt="شعار نادي الإتفاق الرباطي" class="logo-img">
+            <div class="logo-text">Itifaqe <span>de Rabat</span></div>
         </div>
         <nav>
             <a href="#home">الرئيسية</a>
-            <a href="#about">عن الأكاديمية</a>
+            <a href="#program" onclick="toggleSection('program-box')">البرنامج التدريبي</a>
             <a href="#categories">الفئات العمرية</a>
-            <a href="#register">التسجيل والإنضمام</a>
-            <a href="#news">المركز الإعلامي</a>
+            <a href="#register" onclick="toggleSection('register-box')">التسجيل والإنضمام</a>
+            <a href="#staff">الطاقم التقني</a>
+            <a href="#awards" onclick="toggleSection('voting-box')">التصويت والتكريم</a>
             <a href="#contact">اتصل بنا</a>
         </nav>
-        <a href="#register" class="btn-cta">سجّل طفلك الآن</a>
+        <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل</button>
     </header>
 
-    <!-- 2. Hero Banner -->
+    <!-- Hero Banner -->
     <section id="home" class="hero">
-        <h1>مصنع أبطال الغد.. هنا تبدأ رحلة النجاح</h1>
-        <p>أكاديمية نادي اتفاق الرباط لكرة القدم - تطوير المواهب الناشئة وفق أسس تربوية ورياضية حديثة.</p>
+        <h1>نادي الإتفاق الرباطي</h1>
+        <p>تطوير المواهب الكروية وفق أحدث البرامج التربوية والبدنية - العزيمة والإصرار نحو القمة.</p>
         <div class="hero-buttons">
-            <a href="#register" class="btn-cta" style="padding: 10px 24px;">استمارة الانضمام للأكاديمية</a>
-            <a href="#categories" class="btn-secondary">اكتشف برامجنا التدريبية</a>
+            <button class="btn-cta" onclick="toggleSection('register-box')">استمارة التسجيل أونلاين</button>
+            <button class="btn-secondary" onclick="toggleSection('program-box')">اكتشف برنامجنا التدريبي</button>
+        </div>
+
+        <!-- قسم البرنامج التدريبي القابل للطي -->
+        <div id="program-box" class="toggle-box">
+            <h3 style="color:#16a34a; margin-bottom: 10px;">البرنامج التدريبي المعتمد</h3>
+            <p>يعتمد نادي الإتفاق الرباطي منهجية تدريبية متكاملة تشمل ثلاث ركائز أساسية:</p>
+            <ul style="text-align: right; margin: 15px 20px; color:#d1d5db;">
+                <li>⚽ <b>التطوير المهاراتي والفردي:</b> التحكم بالكرة، التمرير الدقيق، والتفكير السريع داخل الملعب.</li>
+                <li>🏃‍♂️ <b>الإعداد البدني والوقائي:</b> رفع اللياقة والسرعة تحت إشراف متخصصين.</li>
+                <li>🧠 <b>الانضباط والروح الرياضية:</b> ترسيخ قيم الاحترام والعمل الجماعي والتكتيك الميداني.</li>
+            </ul>
+        </div>
+
+        <!-- قسم استمارة التسجيل أونلاين القابل للطي -->
+        <div id="register-box" class="toggle-box" style="max-width: 600px; margin: 20px auto 0;">
+            <h3 style="color:#16a34a; margin-bottom: 15px;">استمارة التسجيل الإلكترونية</h3>
+            <form onsubmit="alert('تم إرسال طلب التسجيل بنجاح! سيتواصل معكم إدارة النادي.'); return false;">
+                <div class="form-group">
+                    <label>اسم الطفل الكامل:</label>
+                    <input type="text" required placeholder="أدخل اسم الطفل">
+                </div>
+                <div class="form-group">
+                    <label>تاريخ الميلاد / الفئة:</label>
+                    <select required>
+                        <option value="">اختر الفئة العمرية</option>
+                        <option>مدرسة البراعم (U7 - U10)</option>
+                        <option>فئة الصغار (U11 - U13)</option>
+                        <option>فئة الفتيان (U14 - U15)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>اسم ولي الأمر:</label>
+                    <input type="text" required placeholder="أدخل اسم ولي الأمر">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف للاتصال:</label>
+                    <input type="tel" required placeholder="07XXXXXXXX">
+                </div>
+                <button type="submit" class="btn-cta" style="width: 100%;">إرسال طلب الانضمام</button>
+            </form>
         </div>
     </section>
 
-    <!-- 3A. Our Youth Categories -->
+    <!-- الفئات العمرية -->
     <section id="categories">
-        <h2 class="section-title">الفئات العمرية والبرامج التدريبية</h2>
-        <div class="categories-grid">
-            <div class="category-card">
+        <h2 class="section-title">الفئات العمرية بالنادي</h2>
+        <div class="grid-cards">
+            <div class="card">
                 <h3>مدرسة البراعم (U7 - U10)</h3>
-                <p class="target">الأطفال من 6 إلى 10 سنوات</p>
-                <p>تطوير المهارات الأساسية، التحكم بالكرة، والتسلية الرياضية.</p>
+                <p class="role">من 6 إلى 10 سنوات</p>
+                <p>تطوير المهارات الأساسية والتحكم بالكرة وتنمية الشغف بالرياضة.</p>
             </div>
-            <div class="category-card">
+            <div class="card">
                 <h3>فئة الصغار (U11 - U13)</h3>
-                <p class="target">من 11 إلى 13 سنة</p>
-                <p>التكتيك الأساسي، الانضباط والتنسيق الجماعي داخل الملعب.</p>
+                <p class="role">من 11 إلى 13 سنة</p>
+                <p>التركيز على التكتيك الأساسي والانسجام والتمرير الجماعي.</p>
             </div>
-            <div class="category-card">
+            <div class="card">
                 <h3>فئة الفتيان (U14 - U15)</h3>
-                <p class="target">من 14 إلى 15 سنة</p>
-                <p>الإعداد البدني، المنافسة الرياضية، وصقل المواهب الاحترافية.</p>
+                <p class="role">من 14 إلى 15 سنة</p>
+                <p>الإعداد البدني الاحترافي وصقل المهارات التنافسية الميدانية.</p>
             </div>
         </div>
     </section>
 
-    <!-- 3B. Registration & Join Us -->
+    <!-- شروط والوثائق المطلوبة -->
     <section id="register">
-        <h2 class="section-title">التسجيل والإنضمام</h2>
-        <div class="registration-container">
-            <div class="registration-box">
-                <h3>شروط ومعايير التسجيل</h3>
-                <ul>
-                    <li>الالتزام بالسلوك والروح الرياضية.</li>
-                    <li>المواظبة على حصص التدريب الأسبوعية.</li>
-                    <li>موافقة ولي الأمر والالتزام بالأنظمة.</li>
+        <h2 class="section-title">الوثائق والمعايير المطلوبة للتسجيل</h2>
+        <div class="grid-cards">
+            <div class="card" style="text-align: right;">
+                <h3 style="text-align: center;">الوثائق المطلوبة</h3>
+                <ul style="list-style: none; padding-right: 10px; color: #d1d5db;">
+                    <li>✓ شهادة مدرسية مع طابع فوق الصورة.</li>
+                    <li>✓ صورة شخصية حديثة.</li>
+                    <li>✓ عقد ازدياد.</li>
+                    <li>✓ نسخة من بطاقة ولي الأمر.</li>
+                    <li>✓ التزام مصادق عليه.</li>
                 </ul>
             </div>
-            <div class="registration-box">
-                <h3>الوثائق المطلوبة</h3>
-                <ul>
-                    <li>شهادة مدرسية.</li>
-                    <li>طابع فوق الصورة.</li>
-                    <li>صورة شخصية حديثة.</li>
-                    <li>عقد ازدياد.</li>
-                    <li>نسخة من بطاقة ولي الأمر.</li>
-                    <li>التزام مصادق عليه.</li>
-                </ul>
+            <div class="card" style="text-align: right;">
+                <h3 style="text-align: center;">معايير النادي</h3>
+                <p style="color: #d1d5db; margin-top: 10px;">
+                    يعتمد نادي الإتفاق الرباطي على معايير تربوية ورياضية صليبة تشمل: الالتزام بالسلوك الأخلاقي داخل وخارج الملعب، المواظبة التامة على مواعيد التدريبات، والاحترام المتبادل بين اللاعبين والأطقم التقنية.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- 3C. Coaching & Educational Staff -->
+    <!-- الطاقم التقني والتربوي -->
     <section id="staff">
-        <h2 class="section-title">الطاقم التقني والتربوي</h2>
-        <div class="staff-grid">
-            <div class="staff-card">
-                <h4>المشرف العام</h4>
-                <p>إشراف تربوي ورياضي شامل</p>
+        <h2 class="section-title">الطاقم التقني والتربوي للنادي</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <h4>آدم القدوري</h4>
+                <p class="role">رئيس النادي والمدير التقني</p>
             </div>
-            <div class="staff-card">
-                <h4>مدرب البراعم</h4>
-                <p>مختص في تطوير مهارات الناشئين</p>
+            <div class="card">
+                <h4>عصام الكبوس</h4>
+                <p class="role">المسؤول عن برمجة المباريات وتدريب الفئات الصغرى</p>
             </div>
-            <div class="staff-card">
-                <h4>المعد البدني</h4>
-                <p>تجهيز بدني متوازن للفئات الصغرى</p>
+            <div class="card">
+                <h4>زكرياء حداوي</h4>
+                <p class="role">المسؤول عن اللوجستيك ومدرب الفئات الصغرى</p>
             </div>
-            <div class="staff-card">
-                <h4>مدرب الحراس</h4>
-                <p>تطوير وتأهيل حراس المستقبل</p>
+            <div class="card">
+                <h4>سليمان بنغزالي</h4>
+                <p class="role">المدرب المسؤول عن الإعداد البدني</p>
+            </div>
+            <div class="card">
+                <h4>أمين بنجابر</h4>
+                <p class="role">مدرب الحراس</p>
             </div>
         </div>
     </section>
 
-    <!-- 3D. Academy News & Events -->
+    <!-- التغطيات والمباريات وحفل الاختتام -->
     <section id="news">
-        <h2 class="section-title">أحدث أخبار وتغطيات البراعم</h2>
-        <div class="news-grid">
-            <div class="news-card">
-                <div class="news-content">
-                    <h4>تقارير المباريات الودية</h4>
-                    <p>مباريات ودية استعراضية لبراعم الأكاديمية لتعزيز الروح الجماعية والخبرة الميدانية.</p>
-                </div>
+        <h2 class="section-title">المباريات والتكريم السنوي</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <h3>تقارير المباريات الودية</h3>
+                <p>ينظم النادي مباريات ودية دورية مع أندية ومراكز رياضية لتعزيز الاحتكاك الميداني واكتساب الخبرة للبراعم والشباب.</p>
             </div>
-            <div class="news-card">
-                <div class="news-content">
-                    <h4>تكريم مواهب الشهر</h4>
-                    <p>احتفاء الأكاديمية بالمواهب الأكثر التزاماً وتألقاً خلال التدريبات الأخيرة.</p>
+            <div class="card">
+                <h3>تصويت وتكريم مواهب الموسم</h3>
+                <p>يتم تكريم أبطال ومواهب السنة في **حفل الاختتام بنهاية الموسم**، حيث سيفتح باب التصويت بالموقع لمدة أسبوع لاختيار الأفضل.</p>
+                <button class="btn-secondary" style="margin-top: 15px;" onclick="toggleSection('voting-box')">عرض منصة التصويت</button>
+            </div>
+        </div>
+
+        <!-- منصة التصويت القابلة للطي -->
+        <div id="voting-box" class="toggle-box" style="text-align: center;">
+            <h3 style="color:#16a34a; margin-bottom: 10px;">منصة تصويت مواهب الموسم (حفل الاختتام)</h3>
+            <p style="color:#9ca3af; margin-bottom: 20px;">تفتح المنصة رسمياً في الأسبوع الأخير من الموسم الرياضي للتصويت للاعبين المتميزين.</p>
+            <div class="grid-cards">
+                <div class="card">
+                    <h4>لاعب متألق (نموذج)</h4>
+                    <p class="role">المركز: مهاجم | السن: 12 سنة</p>
+                    <button class="btn-cta" disabled style="opacity: 0.6; cursor: not-allowed;">التصويت يفتح بنهاية الموسم</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Footer -->
+    <!-- Footer / اتصل بنا والملاعب -->
     <footer id="contact">
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>اتفاق الرباط</h4>
-                <p>أكاديمية نادي اتفاق الرباط لكرة القدم لبناء وتطوير أبطال المستقبل.</p>
+                <h4>نادي الإتفاق الرباطي</h4>
+                <p>مؤسسة رياضية تربوية تهدف إلى صقل المواهب الكروية وتطوير أبطال الغد.</p>
             </div>
             <div class="footer-col">
-                <h4>روابط سريعة</h4>
-                <a href="#register">استمارة التسجيل</a>
-                <a href="#categories">برنامج التدريبات</a>
-                <a href="#news">أخبار البراعم</a>
+                <h4>ملاعب ومقر النادي</h4>
+                <p>📍 ملعب حي الفرح</p>
+                <p>📍 ملعب دار السلام</p>
+                <p>📍 ملعب حي النهضة 1</p>
             </div>
             <div class="footer-col">
                 <h4>تواصل معنا</h4>
-                <p>📍 مقر الأكاديمية والملعب: الرباط</p>
-                <p>📞 الهاتف: متوفر للتسجيل</p>
-                <p>✉️ البريد: contact@itifaqe-rabat.com</p>
+                <p>📞 الهاتف: 0702497748</p>
+                <p>✉️ البريد: itifaqe.de.rabat.contact@gmail.com</p>
             </div>
         </div>
         <div class="copyright">
-            <p>جميع الحقوق محفوظة © أكاديمية نادي اتفاق الرباط</p>
+            <p>جميع الحقوق محفوظة © نادي الإتفاق الرباطي - Itifaqe de Rabat</p>
         </div>
     </footer>
+
+    <!-- JavaScript لإظهار وإخفاء الأقسام عند الضغط -->
+    <script>
+        function toggleSection(boxId) {
+            var box = document.getElementById(boxId);
+            if (box.classList.contains('active')) {
+                box.classList.remove('active');
+            } else {
+                document.querySelectorAll('.toggle-box').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+                box.classList.add('active');
+                box.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
 
 </body>
 </html>
