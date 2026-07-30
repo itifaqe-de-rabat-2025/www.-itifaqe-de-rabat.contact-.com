@@ -3,238 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نادي الاتفاق الرباطي - FC Ittifaq De Rabat</title>
+    <title>نادي الإتفاق الرباطي - Itifaqe De Rabat</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        emerald: {
-                            50: '#ecfdf5', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b'
-                        }
+                        emerald: { 50: '#ecfdf5', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b' }
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
 
-    <!-- 1. Header & Navigation -->
+    <!-- 1. الهيدر والترويسة الرئيسية -->
     <nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b-2 border-emerald-600 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showSection('public')">
-                    <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-yellow-400 shadow">
-                        IR
+                <!-- الشعار والاسم -->
+                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showView('public')">
+                    <div class="w-12 h-12 bg-emerald-700 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-yellow-400 shadow overflow-hidden">
+                        <!-- مكان شعار JPEG -->
+                        <span class="text-xs font-black">IR Logo</span>
                     </div>
                     <div>
-                        <h1 class="font-bold text-lg text-emerald-700 dark:text-emerald-400" id="nav-title">نادي الاتفاق الرباطي</h1>
-                        <span class="text-xs text-gray-500 dark:text-gray-400 block">Rabat, Morocco</span>
+                        <h1 class="font-bold text-lg text-emerald-800 dark:text-emerald-400">نادي الإتفاق الرباطي</h1>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 block font-semibold">Itifaqe De Rabat</span>
                     </div>
                 </div>
 
-                <!-- Controls & Actions -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <button onclick="toggleLanguage()" class="p-2 rounded-lg border dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-xs font-bold">
-                        <i class="fa-solid fa-globe"></i> <span id="lang-btn">FR</span>
-                    </button>
-                    
-                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg border dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fa-solid fa-moon text-gray-600 dark:text-yellow-400"></i>
-                    </button>
-
-                    <button onclick="toggleView()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow flex items-center gap-2">
-                        <i class="fa-solid fa-lock"></i> <span id="view-btn-text">لوحة الإدارة والنظام</span>
-                    </button>
+                <!-- القائمة الرئيسية -->
+                <div class="hidden lg:flex items-center space-x-6 space-x-reverse font-bold text-sm">
+                    <a href="#hero" class="hover:text-emerald-600">الرئيسية</a>
+                    <a href="#about" class="hover:text-emerald-600">عن النادي</a>
+                    <a href="#admin-login-sec" class="hover:text-emerald-600">الإدارة</a>
+                    <a href="#categories" class="hover:text-emerald-600">الفئات العمرية</a>
+                    <a href="#sponsors" class="hover:text-emerald-600">الرعاة</a>
+                    <a href="#contact" class="hover:text-emerald-600">تواصل معنا</a>
                 </div>
 
+                <!-- زر الإجراء السريع والدخول -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <button onclick="openRegistrationModal()" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow-md hover:scale-105 transition">
+                        سجّل طفلك الآن / انضم للنادي
+                    </button>
+                    <button onclick="showView('login')" class="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow">
+                        <i class="fa-solid fa-lock"></i> تسجيل الدخول
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN PUBLIC VIEW -->
-    <main id="public-view">
-        <!-- Hero Section -->
-        <div class="relative bg-gradient-to-r from-emerald-800 to-teal-900 text-white py-24 px-4 sm:px-6 lg:px-8 text-center">
-            <div class="max-w-5xl mx-auto">
-                <span class="bg-yellow-400 text-emerald-950 text-xs font-black uppercase px-3 py-1 rounded-full inline-block mb-4 shadow" id="hero-badge">
-                    أكاديمية النادي والبراعم
+    <!-- 2. الواجهة العامة للموقع -->
+    <div id="public-view">
+        <!-- البانر الرئيسي -->
+        <section id="hero" class="relative bg-emerald-900 text-white py-24 px-4 text-center overflow-hidden">
+            <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('stadium-placeholder.jpg');"></div>
+            <div class="max-w-5xl mx-auto relative z-10">
+                <span class="bg-yellow-400 text-emerald-950 text-xs font-black uppercase px-4 py-1.5 rounded-full inline-block mb-4 shadow">
+                    نادي الإتفاق الرباطي
                 </span>
-                <h2 class="text-4xl sm:text-6xl font-extrabold mb-6 leading-tight" id="hero-title">
-                    مصنع أبطال الغد.. هنا تبدأ رحلة النجاح
+                <h2 class="text-3xl sm:text-6xl font-extrabold mb-6 leading-tight">
+                    مصنع أبطال الغد.. هنا تُصنع الأساطير وتبدأ رحلة النجاح الكروي
                 </h2>
-                <p class="text-lg sm:text-xl text-emerald-100 max-w-3xl mx-auto mb-8 leading-relaxed" id="hero-desc">
-                    المنصة الرسمية والشاملة لنادي الاتفاق الرباطي لإدارة وتطوير المواهب الكروية الشابة والأكاديمية وفق أحدث المعايير التربوية والرياضية.
+                <p class="text-base sm:text-xl text-emerald-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+                    المنصة الرسمية الشاملة لنادي الاتفاق الرباطي لتطوير المواهب الكروية الشابة وفق أحدث المعايير التربوية والرياضية الحديثة.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition-transform" id="btn-join">
-                        سجّل طفلك الآن
+                    <button onclick="openRegistrationModal()" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 px-8 py-4 rounded-xl font-bold text-lg shadow-lg">
+                        استمارة الانضمام للنادي
                     </button>
-                    <button onclick="toggleView()" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-shield"></i> دخول نظام الإدارة
-                    </button>
+                    <a href="#categories" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
+                        اكتشف برامج النادي التدريبية
+                    </a>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Categories Section -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-emerald-800 dark:text-emerald-400 mb-2" id="cat-title">الفئات العمرية والبرامج التدريبية</h3>
-                <p class="text-gray-500">نؤهل أبطال المستقبل عبر برنامج تدريبي مخصص لكل فئة عمرية</p>
+        <!-- العداد الإحصائي -->
+        <section class="bg-emerald-800 text-white py-6 shadow-inner">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div><span class="text-3xl font-black block text-yellow-300">350+</span><span class="text-xs">لاعب مسجل</span></div>
+                <div><span class="text-3xl font-black block text-yellow-300">15</span><span class="text-xs">مدرب معتمد</span></div>
+                <div><span class="text-3xl font-black block text-yellow-300">4</span><span class="text-xs">فئات عمرية</span></div>
+                <div><span class="text-3xl font-black block text-yellow-300">12</span><span class="text-xs">بطولة محلية</span></div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- U7-U8 -->
-                <div class="p-6 rounded-2xl border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl transition">
-                    <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full mb-3 inline-block">مدرسة البراعم</span>
-                    <h4 class="text-xl font-bold mb-3 text-emerald-700 dark:text-emerald-400">فئة 2017 - 2016 (U7 - U8)</h4>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">تطوير المهارات الأساسية، التحكم بالكرة، والتسلية الرياضية.</p>
-                </div>
-                <!-- U9-U10 -->
-                <div class="p-6 rounded-2xl border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl transition">
-                    <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full mb-3 inline-block">البراعم المتقدمة</span>
-                    <h4 class="text-xl font-bold mb-3 text-emerald-700 dark:text-emerald-400">فئة 2015 - 2014 (U9 - U10)</h4>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">السيطرة على الكرة، التنسيق الحركي، والعمل الجماعي.</p>
-                </div>
-                <!-- U11-U12 -->
-                <div class="p-6 rounded-2xl border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl transition">
-                    <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full mb-3 inline-block">فئة الصغار</span>
-                    <h4 class="text-xl font-bold mb-3 text-emerald-700 dark:text-emerald-400">فئة 2013 - 2012 (U11 - U12)</h4>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">التكتيك الأساسي، الانضباط، والتمركز داخل الملعب.</p>
-                </div>
-                <!-- U13-U16 -->
-                <div class="p-6 rounded-2xl border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl transition">
-                    <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full mb-3 inline-block">الفتيان والشباب</span>
-                    <h4 class="text-xl font-bold mb-3 text-emerald-700 dark:text-emerald-400">فئة 2011 فما فوق (U13+)</h4>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">الإعداد البدني، المنافسة الرياضية، وصقل المواهب الاحترافية.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- DASHBOARD VIEW -->
-    <main id="dashboard-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="p-6 rounded-2xl mb-8 border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <!-- عن النادي -->
+        <section id="about" class="max-w-7xl mx-auto px-4 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
-                        <i class="fa-solid fa-shield"></i> لوحة الإدارة ونظام الاتفاق الرباطي
-                    </h2>
-                    <p class="text-sm text-gray-500 mt-1">اختر الدور المفضل لاستعراض الصلاحيات المتاحة بالنظام</p>
+                    <h3 class="text-2xl font-bold text-emerald-800 dark:text-emerald-400 mb-4">رؤية ورسالة نادي الإتفاق الرباطي</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                        نسعى في نادي الاتفاق الرباطي إلى ترسيخ منظومة رياضية وتربوية متكاملة تهدف إلى اكتشاف وصقل المواهب الناشئة بمدينة الرباط، وغرس قيم الانضباط والروح الرياضية والعمل الجماعي، لبناء جيل من اللاعبين المحترفين القادرين على المنافسة وطنيا ودوليا.
+                    </p>
+                    <h4 class="text-xl font-bold text-emerald-700 mb-2">كلمة رئيس النادي</h4>
+                    <blockquote class="border-r-4 border-yellow-400 pr-4 italic text-gray-700 dark:text-gray-300 bg-emerald-50 dark:bg-gray-800 p-4 rounded-l-xl">
+                        "إن كرة القدم ليست مجرد لعبة، بل هي مدرسة للحياة وصناعة للمستقبل. في نادي الاتفاق الرباطي، نفتح الأبواب لكل طموح شغوف، ونوفر البيئة المثالية والخبرات التقنية للارتقاء بمواهب أبنائنا وتحويل أحلامهم الرياضية إلى واقع ملموس داخل أرضية الملعب وخارجها."
+                    </blockquote>
+                </div>
+                <div class="bg-gray-200 dark:bg-gray-800 h-64 rounded-2xl flex items-center justify-center text-gray-500 border border-dashed border-emerald-500">
+                    <i class="fa-solid fa-image text-4xl mb-2"></i> [صورة الملعب الرئيسي JPEG]
+                </div>
+            </div>
+        </section>
+
+        <!-- الفئات العمرية -->
+        <section id="categories" class="bg-emerald-50 dark:bg-gray-800 py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <h3 class="text-3xl font-bold text-center text-emerald-800 dark:text-emerald-400 mb-10">الفئات العمرية والبرامج التدريبية</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow border-t-4 border-emerald-600">
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded">مدرسة البراعم</span>
+                        <h4 class="font-bold text-lg my-2">فئة 2017 - 2016 (U7 - U8)</h4>
+                        <p class="text-xs text-gray-500">تطوير المهارات الأساسية، التحكم بالكرة، والتسلية الرياضية.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow border-t-4 border-emerald-600">
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded">البراعم المتقدمة</span>
+                        <h4 class="font-bold text-lg my-2">فئة 2015 - 2014 (U9 - U10)</h4>
+                        <p class="text-xs text-gray-500">السيطرة على الكرة، التنسيق الحركي، والعمل الجماعي.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow border-t-4 border-emerald-600">
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded">فئة الصغار</span>
+                        <h4 class="font-bold text-lg my-2">فئة 2013 - 2012 (U11 - U12)</h4>
+                        <p class="text-xs text-gray-500">التكتيك الأساسي، الانضباط، والتمركز داخل الملعب.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow border-t-4 border-emerald-600">
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded">الفتيان والشباب</span>
+                        <h4 class="font-bold text-lg my-2">فئة 2011 فما فوق (U13+)</h4>
+                        <p class="text-xs text-gray-500">الإعداد البدني، المنافسة الرياضية، وصقل المواهب الاحترافية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الرعاة والشركاء -->
+        <section id="sponsors" class="max-w-7xl mx-auto px-4 py-16 text-center">
+            <h3 class="text-2xl font-bold text-emerald-800 dark:text-emerald-400 mb-8">الرعاة والشركاء الرسميون</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 border rounded-2xl bg-white dark:bg-gray-800 shadow-sm flex flex-col items-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full mb-4 flex items-center justify-center font-bold text-xs">GALAXY Logo</div>
+                    <h4 class="font-bold text-lg mb-1">GALAXY Tiles & Ceramic</h4>
+                    <p class="text-xs text-gray-500 mb-4">الرائد في عالم السيراميك والحلول المعمارية العصرية، والشريك الرسمي لنادي الاتفاق الرباطي في دعم الرياضة وتطوير البنية التحتية للمواهب.</p>
+                    <a href="https://www.instagram.com/galaxy_tiles_ceramic?igsh=MXMyNW8xcm83cGZlNQ==" target="_blank" class="text-xs font-bold text-pink-600 flex items-center gap-1"><i class="fa-brands fa-instagram"></i> زيارة صفحة الانستغرام</a>
+                </div>
+                <div class="p-6 border rounded-2xl bg-white dark:bg-gray-800 shadow-sm flex flex-col items-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full mb-4 flex items-center justify-center font-bold text-xs">المقاطعة Logo</div>
+                    <h4 class="font-bold text-lg mb-1">مجلس مقاطعة اليوسفية - الرباط</h4>
+                    <p class="text-xs text-gray-500 mb-4">الشريك المؤسساتي الداعم للرياضة المحلية والمبادرات الشبابية بعمالة الرباط، والداعم الأساسي لمسيرة نادي الاتفاق الرباطي.</p>
+                    <a href="https://www.facebook.com/share/19EWZHEpjj/" target="_blank" class="text-xs font-bold text-blue-600 flex items-center gap-1"><i class="fa-brands fa-facebook"></i> زيارة الصفحة الرسمية</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- اتصل بنا -->
+        <section id="contact" class="bg-gray-100 dark:bg-gray-800 py-16">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-800 dark:text-emerald-400 mb-6">تواصل معنا</h3>
+                    <p class="text-sm mb-2"><i class="fa-solid fa-phone text-emerald-600"></i> **الهاتف:** +212 702497748</p>
+                    <p class="text-sm mb-6"><i class="fa-solid fa-envelope text-emerald-600"></i> **البريد:** itifaqe.de.rabat.contact@gmail.com</p>
+
+                    <h4 class="font-bold text-sm mb-3">ملاعب النادي التفاعلية (Google Maps):</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="https://maps.app.goo.gl/xujchN42iX5BieCYA" target="_blank" class="text-emerald-700 hover:underline"><i class="fa-solid fa-map-location-dot"></i> موقع الملعب الأول</a></li>
+                        <li><a href="https://maps.app.goo.gl/exNbiX4Uw4yVHu3F7" target="_blank" class="text-emerald-700 hover:underline"><i class="fa-solid fa-map-location-dot"></i> موقع الملعب الثاني</a></li>
+                        <li><a href="https://maps.app.goo.gl/ZvDCCZQVJTefBnsQ9" target="_blank" class="text-emerald-700 hover:underline"><i class="fa-solid fa-map-location-dot"></i> موقع الملعب الثالث</a></li>
+                    </ul>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-bold text-gray-400">الدور الحالي:</span>
-                    <select id="role-select" onchange="changeRole()" class="bg-emerald-50 dark:bg-gray-700 border border-emerald-500 text-emerald-900 dark:text-white text-sm rounded-lg p-2.5 font-bold">
-                        <option value="super_admin">الرئيس (Super Admin)</option>
-                        <option value="finance">أمين المال</option>
-                        <option value="secretary">الكاتب العام</option>
-                        <option value="coach">المدرب</option>
-                        <option value="player">حساب اللاعب</option>
-                        <option value="parent">حساب ولي الأمر</option>
+                <!-- نموذج مراسلة يصل للرئيس -->
+                <form onsubmit="handleContactSubmit(event)" class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow space-y-4">
+                    <h4 class="font-bold text-sm text-emerald-800">مراسلة إدارة النادي برئاسة ادم القدوري</h4>
+                    <input type="text" placeholder="الاسم الكامل" required class="w-full p-2.5 text-xs border rounded-lg dark:bg-gray-800">
+                    <input type="email" placeholder="البريد الإلكتروني / رقم الهاتف" required class="w-full p-2.5 text-xs border rounded-lg dark:bg-gray-800">
+                    <textarea placeholder="نص الرسالة..." rows="4" required class="w-full p-2.5 text-xs border rounded-lg dark:bg-gray-800"></textarea>
+                    <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-2.5 text-xs rounded-lg hover:bg-emerald-800">إرسال الرسالة لرئيس النادي</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- 3. بوابة الدخول المحمية بالتشفير والقن السري -->
+    <div id="login-view" class="hidden max-w-md mx-auto my-20 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-emerald-500">
+        <h3 class="text-2xl font-bold text-center text-emerald-800 dark:text-emerald-400 mb-2">تسجيل الدخول للنظام</h3>
+        <p class="text-xs text-center text-gray-500 mb-6">أدخل القن السري / الرمز المخصص لك للولوج</p>
+
+        <form onsubmit="handleAuthLogin(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold mb-1">الرمز السري الخاص بك:</label>
+                <input type="password" id="access-code-input" placeholder="أدخل القن السري هنا" required class="w-full p-3 border rounded-xl text-center text-sm font-mono dark:bg-gray-900 border-emerald-600">
+            </div>
+            <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-3 rounded-xl hover:bg-emerald-800 text-sm">دخول للنظام</button>
+        </form>
+        <button onclick="showView('public')" class="w-full mt-4 text-xs text-gray-500 hover:underline text-center block">العودة للموقع العام</button>
+    </div>
+
+    <!-- 4. لوحات التحكم المغلقة (Dashboard Views) -->
+    <div id="dashboard-view" class="hidden max-w-7xl mx-auto px-4 py-10">
+        
+        <!-- الهيدر الخاص باللوحة -->
+        <div class="flex justify-between items-center bg-white dark:bg-gray-800 p-6 rounded-2xl shadow mb-8 border-r-4 border-emerald-600">
+            <div>
+                <h3 className="font-bold text-xl text-emerald-800" id="dash-user-title">مرحباً بك في النظام</h3>
+                <span class="text-xs text-gray-500" id="dash-user-role">الصلاحيات مفعلة</span>
+            </div>
+            <button onclick="logout()" class="bg-red-600 text-white text-xs px-4 py-2 rounded-lg font-bold">تسجيل الخروج</button>
+        </div>
+
+        <!-- أ. لوحة الرئيس (Super Admin) - ادم القدوري -->
+        <div id="panel-super-admin" class="hidden space-y-6">
+            <div class="bg-emerald-900 text-white p-6 rounded-2xl shadow">
+                <h4 class="font-bold text-lg mb-2"><i class="fa-solid fa-crown text-yellow-400"></i> لوحة الرئيس - ادم القدوري السريعة</h4>
+                <p class="text-xs opacity-80 mb-6">إدارة حسابات النادي بالكامل وإيقاف أو إنشاء القن السري الخاص بكل عضو ولاعب ومدرب.</p>
+                
+                <!-- أزرار الإجراء السريع للرئيس -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <button onclick="adminAction('إضافة لاعب')" class="bg-emerald-700 hover:bg-emerald-600 p-4 rounded-xl font-bold text-xs border border-emerald-500"><i class="fa-solid fa-user-plus text-xl block mb-1"></i> إضافة لاعب وتوليد قن سري</button>
+                    <button onclick="adminAction('إضافة مدرب')" class="bg-emerald-700 hover:bg-emerald-600 p-4 rounded-xl font-bold text-xs border border-emerald-500"><i class="fa-solid fa-user-tie text-xl block mb-1"></i> إضافة مدرب جديد</button>
+                    <button onclick="adminAction('حذف حساب')" class="bg-red-700 hover:bg-red-600 p-4 rounded-xl font-bold text-xs border border-red-500"><i class="fa-solid fa-user-minus text-xl block mb-1"></i> حذف لاعب / مدرب</button>
+                    <button onclick="adminAction('الرسائل الواردة')" class="bg-yellow-500 text-emerald-950 p-4 rounded-xl font-bold text-xs"><i class="fa-solid fa-envelope text-xl block mb-1"></i> صندوق رسائل رئيس النادي</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ب. لوحة أمينة المال - ملاك قدوري -->
+        <div id="panel-finance" class="hidden bg-white dark:bg-gray-800 p-6 rounded-2xl shadow">
+            <h4 class="font-bold text-lg text-emerald-800 mb-4"><i class="fa-solid fa-wallet"></i> الإدارة المالية - ملاك قدوري</h4>
+            <p class="text-xs text-gray-500 mb-4">تحصيل الاشتراكات والتقارير المالية وتصدير كشوفات الحساب بصيغة PDF.</p>
+            <button onclick="alert('تم استخراج التقارير المالية')" class="bg-emerald-700 text-white px-4 py-2 rounded text-xs font-bold">تصدير تقرير PDF المالي</button>
+        </div>
+
+        <!-- ج. لوحة المدربين الاحترافية -->
+        <div id="panel-coach" class="hidden space-y-6">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow border-t-4 border-yellow-400">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="font-bold text-lg text-emerald-800"><i class="fa-solid fa-certificate text-blue-500"></i> الملف الشخصي الموثق للمدرب</h4>
+                    <span class="bg-yellow-400 text-emerald-950 font-black text-xs px-3 py-1 rounded-full">مدرب الشهر الشرفي ⭐️</span>
+                </div>
+
+                <!-- رادار وتقييم المهارات Interactive Scouting Card -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-emerald-50 dark:bg-gray-900 p-4 rounded-xl">
+                        <h5 class="font-bold text-xs text-emerald-800 mb-3">بطاقة تقييم رادار المهارات للاعب:</h5>
+                        <div class="space-y-2 text-xs">
+                            <div><span>السرعة: 88%</span><div class="bg-gray-200 h-2 rounded"><div class="bg-emerald-600 h-2 rounded" style="width: 88%"></div></div></div>
+                            <div><span>اللياقة البدنية: 92%</span><div class="bg-gray-200 h-2 rounded"><div class="bg-emerald-600 h-2 rounded" style="width: 92%"></div></div></div>
+                            <div><span>التكتيك والتمركز: 80%</span><div class="bg-gray-200 h-2 rounded"><div class="bg-emerald-600 h-2 rounded" style="width: 80%"></div></div></div>
+                        </div>
+                        <button onclick="alert('تم تصدير بطاقة التقييم المعتمدة كـ PDF بنجاح')" class="mt-4 bg-emerald-700 text-white text-xs px-3 py-2 rounded font-bold">تصدير تقرير PDF معتمد</button>
+                    </div>
+
+                    <!-- منتدى مجتمعي مغلق Coach Lounge -->
+                    <div class="bg-gray-100 dark:bg-gray-900 p-4 rounded-xl">
+                        <h5 class="font-bold text-xs text-emerald-800 mb-2"><i class="fa-solid fa-comments"></i> منتدى المدربين المغلق (Coach-Only Lounge)</h5>
+                        <div class="text-xs bg-white dark:bg-gray-800 p-3 rounded mb-2 border-r-2 border-emerald-600">
+                            <span class="font-bold text-emerald-700">ادم القدوري (المدير التقني):</span> تكتيك الضغط العالي لفئة U12 ممتاز جداً هذا الأسبوع.
+                            <span class="bg-blue-100 text-blue-800 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">رد معتمد</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- د. لوحة حساب اللاعب المحمية بقن سري -->
+        <div id="panel-player" class="hidden bg-white dark:bg-gray-800 p-6 rounded-2xl shadow text-center">
+            <h4 class="font-bold text-lg text-emerald-800 mb-2">بطاقة اللاعب الرقمية المحمية</h4>
+            <p class="text-xs text-gray-500 mb-4">كود اللاعب الخاص والقن السري صادرة رسمياً من رئيس النادي ادم القدوري ولا يمكن تغييرها إلا بعلمه.</p>
+            <div class="inline-block p-4 border-2 border-yellow-400 rounded-2xl bg-emerald-50 dark:bg-gray-900">
+                <i class="fa-solid fa-qrcode text-6xl text-emerald-700 mb-2 block"></i>
+                <span class="font-mono text-xs font-bold text-emerald-900 dark:text-emerald-300">PLAYER-VERIFIED-CODE</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 5. نافذة استمارة التسجيل الإلكترونية الاحترافية -->
+    <div id="reg-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 max-w-lg w-full rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeRegistrationModal()" class="absolute left-4 top-4 text-gray-500 text-lg font-bold">✕</button>
+            <h3 class="text-xl font-bold text-emerald-800 dark:text-emerald-400 mb-2">استمارة التسجيل بنادي الإتفاق الرباطي</h3>
+            <p class="text-xs text-gray-500 mb-4">قم بملء البيانات وسنقوم بالتواصل معكم لتحديد تفاصيل الرسوم والانضمام.</p>
+
+            <form onsubmit="submitRegistration(event)" class="space-y-3 text-xs">
+                <div><label class="font-bold">الاسم الكامل للطفل:</label><input type="text" required class="w-full p-2 border rounded-lg mt-1 dark:bg-gray-900"></div>
+                <div><label class="font-bold">تاريخ الميلاد والسن:</label><input type="date" required class="w-full p-2 border rounded-lg mt-1 dark:bg-gray-900"></div>
+                <div>
+                    <label class="font-bold">الفئة العمرية المستهدفة:</label>
+                    <select class="w-full p-2 border rounded-lg mt-1 dark:bg-gray-900 font-bold">
+                        <option>U7 - U8 (براعم)</option>
+                        <option>U9 - U10 (براعم متقدمة)</option>
+                        <option>U11 - U12 (صغار)</option>
+                        <option>U13 - U16 (فتيان)</option>
                     </select>
                 </div>
-            </div>
+                <div><label class="font-bold">اسم ولي الأمر الكامل:</label><input type="text" required class="w-full p-2 border rounded-lg mt-1 dark:bg-gray-900"></div>
+                <div><label class="font-bold">رقم الهاتف للتواصل:</label><input type="tel" required class="w-full p-2 border rounded-lg mt-1 dark:bg-gray-900"></div>
+                <button type="submit" class="w-full bg-yellow-400 text-emerald-950 font-black p-3 rounded-xl hover:bg-yellow-300 text-sm mt-4">إرسال استمارة التسجيل</button>
+            </form>
         </div>
+    </div>
 
-        <!-- Role Panels Container -->
-        <div id="role-panel" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Dynamic Content via JS -->
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 text-center text-sm">
-        <p>© 2026 جميع الحقوق محفوظة - نادي الاتفاق الرباطي (FC Ittifaq De Rabat)</p>
-    </footer>
-
-    <!-- JavaScript logic -->
+    <!-- JS Logic -->
     <script>
-        let currentLang = 'ar';
-        let currentView = 'public';
+        // قواميس وقواعد البيانات الشفرية للرموز السرية من الصور المرفقة
+        const ACCESS_DATABASE = {
+            // المكتب الإداري
+            "X-2006-QDR": { role: "super_admin", title: "ادم القدوري - الرئيس" },
+            "X-2007-BENJABER": { role: "admin", title: "أمين بنجابر - المستشار الأول" },
+            "X-2003-QDR": { role: "finance", title: "ملاك قدوري - أمينة المال" },
+            "X-1993-BOUKDAL": { role: "secretary", title: "هدى بوكدال - الكاتبة العامة" },
+            "X-1997-HADAOUI": { role: "admin", title: "زكرياء حداوي - المستشار الثاني" },
 
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
+            // الطاقم التقني والمدربين
+            "COACH-ADAM-QADDOURI-@14": { role: "coach", title: "المدير التقني - ادم القدوري" },
+            "COACH-ISSAM-ALAKBOUS-@33": { role: "coach", title: "مسؤول البرمجة - عصام الكبوس" },
+            "COACH-ZAKARIA-HADAOUI-@22": { role: "coach", title: "مسؤول اللوجستيك - زكرياء حداوي" },
+            "COACH-SOULAYMAN-BENGHAZALE-@44": { role: "coach", title: "مدرب اللياقة - سليمان بنغزال" },
+            "COACH-AMIN-BENJABRI-@55": { role: "coach", title: "مدرب الحراس - أمين بنجابر" },
+
+            // رمز تجريبي للاعب
+            "PLAYER-100": { role: "player", title: "حساب اللاعب المسجل" }
+        };
+
+        function showView(view) {
+            document.getElementById('public-view').classList.add('hidden');
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.add('hidden');
+
+            if(view === 'public') document.getElementById('public-view').classList.remove('hidden');
+            if(view === 'login') document.getElementById('login-view').classList.remove('hidden');
+            if(view === 'dashboard') document.getElementById('dashboard-view').classList.remove('hidden');
         }
 
-        function toggleView() {
-            currentView = currentView === 'public' ? 'dashboard' : 'public';
-            if(currentView === 'dashboard') {
-                document.getElementById('public-view').classList.add('hidden');
-                document.getElementById('dashboard-view').classList.remove('hidden');
-                document.getElementById('view-btn-text').innerText = "العودة للموقع";
-                changeRole();
+        function handleAuthLogin(e) {
+            e.preventDefault();
+            const code = document.getElementById('access-code-input').value.trim();
+
+            if(ACCESS_DATABASE[code]) {
+                const user = ACCESS_DATABASE[code];
+                showView('dashboard');
+                document.getElementById('dash-user-title').innerText = "مرحباً بك: " + user.title;
+                
+                // إخفاء كافة اللوحات أولاً
+                document.getElementById('panel-super-admin').classList.add('hidden');
+                document.getElementById('panel-finance').classList.add('hidden');
+                document.getElementById('panel-coach').classList.add('hidden');
+                document.getElementById('panel-player').classList.add('hidden');
+
+                // إظهار اللوحة المناسبة حسب الرمز السري
+                if(user.role === 'super_admin') document.getElementById('panel-super-admin').classList.remove('hidden');
+                else if(user.role === 'finance') document.getElementById('panel-finance').classList.remove('hidden');
+                else if(user.role === 'coach') document.getElementById('panel-coach').classList.remove('hidden');
+                else if(user.role === 'player') document.getElementById('panel-player').classList.remove('hidden');
+                else alert("تم الدخول بصلاحيات المكتب الإداري للنادي.");
+                
+                document.getElementById('access-code-input').value = "";
             } else {
-                document.getElementById('public-view').classList.remove('hidden');
-                document.getElementById('dashboard-view').classList.add('hidden');
-                document.getElementById('view-btn-text').innerText = "لوحة الإدارة والنظام";
+                alert("الرمز السري غير صحيح! لا يمكن الدخول إلا بالقن السري المعتمد من رئيس النادي.");
             }
         }
 
-        function changeRole() {
-            const role = document.getElementById('role-select').value;
-            const container = document.getElementById('role-panel');
-            
-            let html = '';
-            if(role === 'super_admin') {
-                html = `
-                    <div class="p-6 rounded-2xl bg-emerald-600 text-white shadow"><i class="fa-solid fa-chart-line text-2xl mb-2"></i><h3 class="font-bold text-lg">إدارة النظام الشاملة</h3><p class="text-xs opacity-80 mt-1">إضافة وإزالة المستخدمين وتحديد جميع الصلاحيات</p></div>
-                    <div class="p-6 rounded-2xl bg-teal-600 text-white shadow"><i class="fa-solid fa-file-contract text-2xl mb-2"></i><h3 class="font-bold text-lg">الأرشيف وسجل العمليات</h3><p class="text-xs opacity-80 mt-1">النسخ الاحتياطي التلقائي ومتابعة سجل العمليات</p></div>
-                    <div class="p-6 rounded-2xl bg-cyan-700 text-white shadow"><i class="fa-solid fa-users-gear text-2xl mb-2"></i><h3 class="font-bold text-lg">إدارة الأخبار واللاعبين</h3><p class="text-xs opacity-80 mt-1">الموافقة على التعاقدات ونشر المستجدات</p></div>
-                `;
-            } else if(role === 'finance') {
-                html = `
-                    <div class="p-6 rounded-2xl bg-emerald-700 text-white shadow col-span-2"><i class="fa-solid fa-sack-dollar text-2xl mb-2"></i><h3 class="font-bold text-lg">إدارة الميزانية والاشتراكات</h3><p class="text-sm opacity-90 mt-2">تحصيل اشتراكات الأكاديمية، متابعة المصاريف، وتوليد تقارير PDF.</p></div>
-                    <div class="p-6 rounded-2xl bg-emerald-900 text-white shadow"><i class="fa-solid fa-file-invoice text-2xl mb-2 text-yellow-400"></i><h3 class="font-bold text-lg">كشف الحساب الدوري</h3><p class="text-xs opacity-80 mt-1">إرسال وتنظيم الفواتير الآلية لأولياء الأمور</p></div>
-                `;
-            } else if(role === 'coach') {
-                html = `
-                    <div class="p-6 rounded-2xl bg-emerald-800 text-white shadow"><i class="fa-solid fa-clipboard-user text-2xl mb-2"></i><h3 class="font-bold text-lg">تسجيل الحضور والبرامج</h3><p class="text-xs opacity-80 mt-1">إدخال حضور التدريبات والبرنامج الأسبوعي</p></div>
-                    <div class="p-6 rounded-2xl bg-teal-800 text-white shadow"><i class="fa-solid fa-star text-2xl mb-2"></i><h3 class="font-bold text-lg">تقييم اللاعبين والتنقيط</h3><p class="text-xs opacity-80 mt-1">تقييم التطور البدني والتكتيكي واستدعاءات المباريات</p></div>
-                `;
-            } else {
-                html = `
-                    <div class="p-6 rounded-2xl bg-gray-800 text-white shadow col-span-3 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-xl text-yellow-400">بوابة المتابعة والبطاقة الرقمية</h3>
-                            <p class="text-sm text-gray-300 mt-1">تتبع الحضور والغياب، التقييم الرياضي والبدني، الاشتراك، والتواصل المباشر مع النادي.</p>
-                        </div>
-                        <i class="fa-solid fa-qrcode text-5xl text-yellow-400 border p-3 rounded-xl border-yellow-400"></i>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
+        function logout() { showView('public'); }
+        function openRegistrationModal() { document.getElementById('reg-modal').classList.remove('hidden'); }
+        function closeRegistrationModal() { document.getElementById('reg-modal').classList.add('hidden'); }
+
+        function submitRegistration(e) {
+            e.preventDefault();
+            alert("تم إرسال استمارة التسجيل بنجاح إلى إدارة نادي الإتفاق الرباطي. سنقوم بالتواصل مع ولي الأمر قريباً.");
+            closeRegistrationModal();
         }
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'fr' : 'ar';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').innerText = currentLang === 'ar' ? 'FR' : 'عربي';
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert("تم إرسال الرسالة بنجاح إلى رئيس النادي ادم القدوري.");
+            e.target.reset();
+        }
 
-            if(currentLang === 'fr') {
-                document.getElementById('nav-title').innerText = "FC Ittifaq De Rabat";
-                document.getElementById('hero-title').innerText = "La fabrique des champions de demain.. L'aventure commence ici";
-                document.getElementById('hero-desc').innerText = "La plateforme officielle du FC Ittifaq De Rabat pour gérer et développer les jeunes talents selon les normes sportives les plus modernes.";
-                document.getElementById('hero-badge').innerText = "Académie & Jeunes";
-                document.getElementById('btn-join').innerText = "Inscrire votre enfant";
-                document.getElementById('cat-title').innerText = "Catégories d'âge & Programmes";
-            } else {
-                document.getElementById('nav-title').innerText = "نادي الاتفاق الرباطي";
-                document.getElementById('hero-title').innerText = "مصنع أبطال الغد.. هنا تبدأ رحلة النجاح";
-                document.getElementById('hero-desc').innerText = "المنصة الرسمية والشاملة لنادي الاتفاق الرباطي لإدارة وتطوير المواهب الكروية الشابة والأكاديمية وفق أحدث المعايير التربوية والرياضية.";
-                document.getElementById('hero-badge').innerText = "أكاديمية النادي والبراعم";
-                document.getElementById('btn-join').innerText = "سجّل طفلك الآن";
-                document.getElementById('cat-title').innerText = "الفئات العمرية والبرامج التدريبية";
-            }
+        function adminAction(actionName) {
+            alert("إجراء رئيس النادي: " + actionName + " - يرجى إدخال البيانات والتأكيد.");
         }
     </script>
 </body>
